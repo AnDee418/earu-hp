@@ -1,0 +1,748 @@
+@import "../variables";
+
+.brand-page-wrapper{
+    width: 100%;
+    margin-bottom: 120px;
+}
+
+.brand-page-container{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+    @include respond-to(md){
+        gap: 60px;
+    }
+    .brand-category-wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 60px;
+        .brand-category-title-wrapper{
+            width: 75%;
+            h3{
+                font-size: 2rem;
+                color: $accent-color;
+            }
+            h1{
+                font-size: 3rem;
+                font-weight: 900;
+            }
+            p{
+                font-size: 24px;
+                margin-top: 16px;
+            }
+            @include respond-to(lg){
+                width: 100%;
+                h3{
+                    font-size: 1.3rem;
+                }
+                h1{
+                    font-size: 2rem;
+                }
+                p{
+                    font-size: 21px;
+                }
+            }
+            @include respond-to(sm){
+                width: 100%;
+                h3{
+                    font-size: 1.3rem;
+                }
+                h1{
+                    font-size: 1.7rem;
+                }
+                p{
+                    font-size: 21px;
+                }
+            }
+        }
+        .list-container{
+            list-style: none;
+            display: grid;
+            gap: 60px;
+            .product-page-container{
+                width: 100%;
+                transition: all 0.3s ease-in-out;
+                border-radius: 16px;
+                cursor: pointer;
+                .image-container{
+                    width: 100%;
+                    overflow: hidden;
+                    border-radius: 16px;
+                    img{
+                        width: 100%;
+                        aspect-ratio: 16/9;
+                        object-fit: cover;
+                    }
+                }
+                .text-container{
+                    margin: 24px 0;
+                    padding: 0 16px 16px 16px;
+                    @include respond-to(md){
+                        padding: 0;
+                    }
+                    h3{
+                        font-size: 2rem;
+                        position: relative;
+                        padding-left: 32px;
+                        &::before{
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 16px;
+                            height: 100%;
+                            background-color: $accent-color;
+                        }
+                        @include respond-to(sm){
+                            font-size: 1.5rem;
+                            padding-left: 16px;
+                            &::before{
+                                width: 8px;
+                            }
+                        }
+                    }
+                    p{
+                        font-size: 21px;
+                        margin-top: 16px;
+                        line-height: 180%;
+                        @include respond-to(xl){
+                            font-size: 16px;
+                        }
+                    }
+                }
+                .shop-link{
+                    @include respond-to(md){
+                        display: none;
+                    }
+                }
+                .sp-button{
+                    width: 100%;
+                    display: none;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 8px 0;
+                    background-color: $pickup-color;
+                    box-shadow: 0px 2px 10px $shadow;
+                    border-radius: 16px;
+                    p{
+                        font-size: 1rem;
+                        font-weight: 600;
+                        color: $white;
+                    }
+                    &.sp-shop-link{
+                        background-color: $primary-color;
+                        text-decoration: none;
+                    }
+                    @include respond-to(md){
+                        display: flex;
+                    }
+                }
+                &:hover{
+                    transform: scale(1.05);
+                    box-shadow: 0px 5px 10px $shadow;
+                }
+            }
+            &.order-container{
+                grid-template-columns: repeat(2, 1fr);
+                @include respond-to(lg){
+                    grid-template-columns: repeat(1, 1fr);
+                }
+            }
+            &.sub-items-container{
+                grid-template-columns: repeat(3, 1fr);
+                @include respond-to(lg){
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 24px;
+                }
+                @include respond-to(md){
+                    .text-container{
+                        p{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    @include respond-to(md){
+        padding: 1rem;
+        align-items: center;
+    }
+
+    &.open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .popup-content {
+        background: $basic-color;
+        border: 8px solid $primary-color;
+        padding: 20px;
+        width: 95%;
+        height: 90%;
+        max-height: 90vh; // ポップアップの高さを制限し、全体の高さを画面より小さくする
+        height: 100%;
+        border-radius: 8px;
+        position: relative;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        @include respond-to(md){
+            width: 100%;
+            height: 100%;
+            max-height: 100dvh; // ポップアップの高さを制限し、全体の高さを画面より小さくする
+            padding: 12px;
+        }
+
+        &.open {
+            transform: translateY(0);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 42px;
+            height: 42px;
+            background-color: $pickup-color;
+            font-size: 32px;
+            border-radius: 8px;
+            color: $white;
+            border: none;
+            z-index: 3;
+            cursor: pointer;
+        }
+        .popup-content-inner{
+            display: flex;
+            flex-direction: column; // Ensure it stacks vertically
+            gap: 60px;
+            overflow: hidden; // Prevent overflow from interfering
+            width: 100%;
+            height: 100%;
+            position: relative;
+            gap: 60px;
+            @include respond-to(md){
+                overflow: hidden; // Changed from scroll to hidden
+            }
+            // POPUPコンテンツ
+            .popup-content-text{
+                flex: 1; // Allow it to grow and take available space
+                display: flex;
+                gap: 16px;
+                overflow: auto; // Prevent overflow from interfering
+                height: 100%;
+                width: 100%;
+                position: relative;
+                display: flex;
+                gap: 16px;
+                z-index: 2;
+                @include respond-to(md){
+                    flex-direction: column-reverse;
+                    height: fit-content;
+                }
+                .item-title-container{
+                    width: 65%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 24px;
+                    background-color: rgba($color: $icon-color, $alpha: 0.5);
+                    border-radius: 8px;
+                    padding: 2rem;
+                    max-height: 100vh;
+                    -webkit-overflow-scrolling: touch;
+                    overflow-y: auto;
+                    overscroll-behavior: contain;
+                    @include respond-to(md){
+                        width: 100%;
+                        height: auto;
+                        padding: 16px;
+                        overflow-y: auto; // Changed to auto
+                        -webkit-overflow-scrolling: touch;
+                        transform: translateZ(0); // Add hardware acceleration
+                        will-change: scroll-position; // Optimize scrolling
+                    }
+                    // Custom scrollbar styles
+                    &::-webkit-scrollbar {
+                        width: 12px;
+                    }
+
+                    &::-webkit-scrollbar-track {
+                        background: $basic-color;
+                        border-radius: 8px;
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        background-color: $pickup-color;
+                        border-radius: 8px;
+                        border: 3px solid $basic-color;
+                    }
+
+                    &::-webkit-scrollbar-thumb:hover {
+                        background-color: $primary-color;
+                    }
+                    .item-title{
+                        width: 100%;
+                        h3{
+                            font-size: 3rem;
+                            background: $dark-gradation-right;
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            position: relative;
+                            margin-bottom: 8px;
+                            @include respond-to(md){
+                                font-size: 2.3rem;
+                            }
+                        }
+                        p{
+                            font-size: 1.2rem;
+                            font-weight: 600;
+                            @include respond-to(md){
+                                font-size: 1rem;
+                            }
+                        }
+                    }
+                    .insole-detail-wrapper{
+                        display: flex;
+                        width: 100%;
+                        .insole-detail{
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            gap: 24px;
+                            .insole-detail-container{
+                                width: 100%;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: flex-start;
+                                gap: 16px;
+                                .label{
+                                    font-size: 1rem;
+                                    font-weight: 600;
+                                    color: $white;
+                
+                                    width: 50%;
+                                    padding: 4px 0;
+                                    border-radius: 8px;
+                                    background-color: $pickup-color;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    @include respond-to(md){
+                                        width: 100%;
+                                    }
+                                }
+                                .detail{
+                                    font-size: 1rem;
+                                    display: flex;
+                                    flex-direction: column;
+                                }
+                                .attention{
+                                    font-size: 1rem;
+                                    font-weight: 600;
+                                    color: #f51717;
+                                }
+                            }
+                            .variation-wrapper{
+                                display: grid;
+                                grid-template-columns: repeat(3, auto);
+                                gap: 16px;
+                                position: relative;
+                                @include respond-to(md){
+                                    grid-template-columns: repeat(1, auto);
+                                    width: 100%;
+                                }
+                                .variation-container{
+                                    display: flex;
+                                    gap: 16px;
+                                    width: 100%;
+                                    .variation-label{
+                                        width: 25%;
+                                        position: relative;
+                                        padding-right: 16px;
+                                        font-weight: 600;
+                                        &::after{
+                                            content: "";
+                                            position: absolute;
+                                            top: 0;
+                                            right: 0;
+                    
+                                            width: 8px;
+                                            height: 100%;
+                                            background-color: $pickup-color
+                                        }
+                                    }
+                                    .detail{
+                                        width: 75%;
+                                    }
+                                    .variation-button{
+                                        width: 100%;
+                                        padding: 4px 16px;
+                                        background-color: $white;
+                                        border: 2px solid $pickup-color;
+                                        font-weight: 600;
+                                        color: $pickup-color;
+                                        border-radius: 32px;
+                                        font-size: 1rem;
+                                        font-family: "Noto Sans JP", sans-serif;
+                                        font-optical-sizing: auto;
+                                        transition: all 0.3s ease-in-out;
+                                        cursor: pointer;
+                
+                                        &.selected {
+                                            background-color: $button-color;
+                                            color: $white;
+                                            border: 2px solid $button-color;
+                                        }
+
+                                        &:hover {
+                                            box-shadow: 0px 2px 10px $shadow;
+                                        }
+                                    }
+                                }
+                            }
+                            .top-cover-wrapper{
+                                width: 100%;
+                                display: grid;
+                                grid-template-columns: repeat(2, 1fr);
+                                gap: 32px 16px;
+                                @include respond-to(md){
+                                    grid-template-columns: repeat(1, 1fr);
+                                }
+                                .top-cover-container{
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: center;
+                                    gap: 8px;
+                                    .top-cover{
+                                        width: fit-content;
+                                        position: relative;
+                                        padding-bottom: 8px;
+                                        font-weight: 600;
+                                        border-bottom: 2px solid $pickup-color;
+                                        font-size: 1.2rem;
+                                        span{
+                                            margin-left: 16px;
+                                            font-size: 0.8rem;
+                                            color: rgba($color: $primary-color, $alpha: 0.5);
+                                        }
+                                    }
+                                    .color-wrapper{
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        flex: 1;
+                                        gap: 32px;
+                                        background-color: $white;
+                                        padding: 8px 0;
+                                        border-radius: 8px;
+
+                                        .color-container{
+                                            display: flex;
+                                            flex-direction: column;
+                                            align-items: center;
+                                            justify-content: center;
+                                            .color-curcle{
+                                                width: 72px;
+                                                aspect-ratio: 1/1;
+                                                object-fit: cover;
+                                                border-radius: 50%;
+                                                @include respond-to(md){
+                                                    width: 48px;
+                                                }
+                                            }
+                                            p{
+                                                font-size: 0.8rem;
+                                            }
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                            .price-wrapper{
+                                width: 100%;
+                                display: grid;
+                                grid-template-columns: repeat(2, auto);
+                                align-items: center;
+                                gap: 16px;
+                                @include respond-to(md){
+                                    grid-template-columns: repeat(1, auto);
+                                }
+                                .price-container{
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 60px;    
+                                    p{
+                                        display: flex;
+                                        align-items: center;
+                                        flex-direction: row;
+                                        font-weight: 600;
+                                        font-size: 1.3rem;
+                                        @include respond-to(md){
+                                            font-size: 1rem;
+                                        }
+                                        @include respond-to(xs){
+                                            flex-direction: column;
+                                            justify-content: center;
+                                            align-items: flex-start;
+                                            font-size: 1.8rem;
+                                        }
+                                        span{
+                                            font-size: 1rem;
+                                            margin-right: 16px;
+                                            padding-right: 16px;
+                                            position: relative;
+                                            &::after{
+                                                content: "";
+                                                position: absolute;
+                                                top: 0;
+                                                right: 0;
+                                                width: 3px;
+                                                height: 100%;
+                                                background-color: $pickup-color;
+                                            }
+                                            @include respond-to(md){
+                                                font-size: 0.8rem;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .action-wrapper{
+                                display: grid;
+                                grid-template-columns: repeat(2,auto);
+                                gap: 16px;
+                                @include respond-to(md){
+                                    grid-template-columns: repeat(1,auto);
+                                    width: 100%;
+                                }
+                                .learn-more{
+                                    color: $primary-color;
+                                    background-color: $white;
+                                    border: 2px solid $button-color;
+                                    font-weight: 600;
+                                    width: fit-content;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    text-decoration: none;
+                                    gap: 24px;
+                                    border-radius: 32px;
+                                    box-shadow: 0px 5px 10px $shadow;
+                                    transition: all 0.3s ease-in-out;
+                                    padding: 4px 16px;
+                                    @include respond-to(md){
+                                        width: 100%;
+                                        padding: 16px 8px;
+                                        gap: 16px;
+                                    }
+                                    @include respond-to(xs){
+                                        font-size: 0.8rem;
+                                    }
+                                    &:hover{
+                                        color: $white;
+                                        background-color: $button-color;
+                    
+                                    }
+                                }
+                                .shopping{
+                                    color: $white;
+                                    background-color: $primary-color;
+                                    border: 2px solid $primary-color;
+                                    &:hover{
+                                        background-color: $hovered-color;
+                                        border: 2px solid $hovered-color;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .item-image-container{
+                    width: 35%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 16px;
+                    @include respond-to(md){
+                        width: 100%;
+                        display: none;
+                    }
+                    img{
+                        height: 40%;
+                        width: 100%;
+                        object-fit: cover;
+                        border-radius: 8px;                     
+                        @include respond-to(md){
+                            height: 25dvh;
+                        }
+                    }
+                    .pc-chart{
+                        width: 100%;
+                        height: 60%;
+                    }
+                }
+            }
+        }
+    }
+    .sp-image{
+        display: none;
+        width: 100%;
+        height: 25dvh;
+        object-fit: cover;
+        border-radius: 8px;
+        @include respond-to(md){
+            display: block;
+        }
+    }
+}
+
+
+// レーダーチャート
+.sp-chart{
+    display: none;
+    width: 100%;
+    height: 1fr;
+    @include respond-to(md){
+        display: block;
+    }
+}
+.pc-chart{
+    @include respond-to(md){
+        display: none;
+    }
+}
+.pentagon-chart-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    @include respond-to(md){
+        justify-content: center;
+        align-items: center;
+        height: 30dvh;
+    }
+    .chart-wrapper {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+        background-image: url('../../assets/images/background/newmo-bdack.webp');
+        background-size: cover;
+        background-position: center;
+        border-radius: 8px;
+        position: relative;
+        overflow: hidden;
+        &::after{
+            position: absolute;
+            inset: 0;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background-color: rgba($color: $icon-color, $alpha: 0.7);
+        }
+        .recharts-responsive-container{
+            width: 90% !important;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            @include respond-to(md){
+                width: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+            .recharts-wrapper{
+                width: fit-content !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                svg{
+                    width: 80% !important;
+                    height: fit-content !important;
+                    overflow: visible !important;
+                    @include respond-to(md){
+                        width: 90% !important;
+                        height: 90% !important;
+                    }
+                }
+            }
+        }
+    }
+    .recharts-polar-angle-axis-tick-value {
+        fill: $primary-color; // 軸のラベルの色を変更
+        color: $primary-color;
+        font-weight: 900;
+    }
+}
+
+// ツールチップ
+.tooltip-container {
+    display: inline-block;
+    background-color: $white;
+    padding: 4px 16px;
+    border-radius: 16px;
+    border: 2px solid $pickup-color;
+    cursor: pointer; // ツールチップが出現することを示唆
+
+    &:after {
+        content: ' ⓘ'; // 情報アイコンを追加して示唆
+        font-size: 14px;
+        color: $primary-color;
+    }
+
+    .tooltip {
+        position: absolute;
+        top: 110%;
+        left: 0;
+        background-color: #333;
+        color: #fff;
+        padding: 16px;
+        border-radius: 4px;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.2s;
+        .tooltip-inner{
+            p{
+                font-size: 1rem;
+                &.arrert-order{
+                    font-size: 0.8rem;
+                    margin-top: 8px;
+                }
+            }
+        }
+    }
+
+    span{
+        font-weight: 600;
+        color: $pickup-color;
+        padding-right: 8px;
+    }
+
+    &:hover .tooltip,
+    &:active .tooltip {
+        opacity: 1;
+    }
+}

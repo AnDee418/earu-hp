@@ -1,0 +1,536 @@
+@import '../styles/variables';
+
+.news-list-container {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 120px 0;
+        width: 95%;
+        position: relative;
+        z-index: 2;
+
+        @include respond-to(md) {
+            padding: 80px 0;
+        }
+        @include respond-to(sm) {
+            padding: 60px 0;
+        }
+    }
+
+    .sub-section-title-container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 80px;
+
+        @include respond-to(md) {
+            margin-bottom: 40px;
+        }
+
+        .sub-section-subtitle{
+            background: linear-gradient(to right, #09416C, #127ED2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            width: fit-content;
+        }
+    }
+
+    .news-list-item-wrapper{
+       width: 100%;
+       display: flex;
+       align-items: flex-start;
+
+       @include respond-to(lg) {
+           flex-direction: column;
+       }
+
+       .news-categories {
+           display: flex;
+           flex-direction: column;
+           flex-wrap: wrap;
+           justify-content: center;
+           margin-bottom: 2rem;
+           width: 15%;
+           height: 100%;
+           position: sticky;
+           top: 0;
+           left: 0;
+
+           @include respond-to(lg) {
+               width: 100%;
+               flex-direction: row;
+               position: static;
+               margin-bottom: 1rem;
+               overflow-x: auto;
+               -webkit-overflow-scrolling: touch;
+               padding-bottom: 0.5rem;
+           }
+
+           .category-button {
+                width: 75%;
+                background: #f0f0f0;
+                border: 1px solid #ccc;
+                color: #333;
+                padding: 8px 16px;
+                margin: 5px;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: background 0.2s, color 0.2s;
+
+                @include respond-to(lg) {
+                    width: auto;
+                    white-space: nowrap;
+                }
+                @include respond-to(sm) {
+                    font-size: 0.9rem;
+                    padding: 6px 12px;
+                }
+                
+                &:hover {
+                    background: #e0e0e0;
+                }
+                
+                &.active {
+                    background: $pickup-color;
+                    color: #fff;
+                    border-color: $pickup-color;
+                }
+           }
+       }
+
+       .news-list-main-container{
+            flex: 1;
+            border-left: 1px solid $pickup-color;
+            padding-left: 2.5rem;
+
+            @include respond-to(lg) {
+                border-left: none;
+                padding-left: 0;
+            }
+       }
+    }
+
+  .news-item {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid $curcle-color;
+    padding: 16px 0;
+    width: 100%;
+    height: 35svh;
+
+    @include respond-to(lg) {
+        height: auto;
+    }
+    @include respond-to(md) {
+        flex-direction: column;
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+  
+    &__image {
+        margin-right: 3rem;
+        width: 35%;
+        aspect-ratio: 16/9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+
+        @include respond-to(md) {
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: 1rem;
+        }
+    
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+    }
+
+    &__placeholder{
+        width: 35%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        background: rgb(194, 194, 194);
+        margin-right: 3rem;
+
+        @include respond-to(md) {
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: 1rem;
+        }
+    }
+  
+    &__content {
+        flex: 1;
+
+        @include respond-to(md) {
+            width: 100%;
+        }
+    }
+  
+    &__meta {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        color: #555;
+
+        @include respond-to(sm) {
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+    
+        .news-item__date {
+            margin-right: 10px;
+        }
+  
+        .news-item__category {
+            background: $accent-color;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: $white;
+        }
+    }
+  
+    &__title {
+        font-size: 1.4rem;
+        margin: 0.5rem 0;
+        color: $primary-color;
+
+        @include respond-to(md) {
+            font-size: 1.2rem;
+        }
+        @include respond-to(sm) {
+            font-size: 1.1rem;
+        }
+    }
+  
+    &__link {
+        width: 100%;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+
+        @include respond-to(md) {
+            flex-direction: column;
+            padding: 0 8px;
+        }
+
+        &:hover {
+            background: $curcle-color;
+            .news-item-title {
+                color: $pickup-color;
+            }
+            img{
+                transform: scale(1.1);
+            }
+        }
+    }
+  }
+  
+  .news-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+
+    @include respond-to(sm) {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+  
+    &__button {
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      margin: 0 5px;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      @include respond-to(sm) {
+          width: 100%;
+          padding: 12px;
+      }
+  
+      &:hover:not(:disabled) {
+        background: #e0e0e0;
+      }
+  
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  
+    &__info {
+      margin: 0 10px;
+      font-size: 0.9rem;
+
+      @include respond-to(sm) {
+          width: 100%;
+          text-align: center;
+          margin: 0;
+      }
+    }
+  }
+  
+  .news-detail {
+    max-width: 1000px;
+    position: relative;
+    z-index: 2;
+    margin: 0 auto;
+    padding: 120px 0;
+    width: 95%;
+
+    @include respond-to(lg) {
+      padding: 100px 0;
+    }
+
+    &__image {
+      width: 100%;
+      margin-bottom: 2rem;
+      
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+
+    &__meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+
+      @include respond-to(sm) {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+    }
+
+    &__date {
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    &__category {
+      background: $accent-color;
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: $white;
+      font-size: 0.8rem;
+    }
+
+    &__title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: $primary-color;
+      line-height: 1.4;
+
+      @include respond-to(lg) {
+        font-size: 1.8rem;
+      }
+
+      @include respond-to(md) {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+      }
+
+      @include respond-to(sm) {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+      }
+    }
+
+    &__content {
+      line-height: 1.8;
+      
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+
+        @include respond-to(sm) {
+          margin-bottom: 1rem;
+        }
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        margin: 2.5rem 0 1.5rem;
+
+        @include respond-to(lg) {
+          font-size: 1.6rem;
+        }
+
+        @include respond-to(md) {
+          font-size: 1.4rem;
+          margin: 2rem 0 1rem;
+        }
+
+        @include respond-to(sm) {
+          font-size: 1.3rem;
+          margin: 1.5rem 0 1rem;
+        }
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+
+        @include respond-to(lg) {
+          font-size: 1.4rem;
+        }
+
+        @include respond-to(md) {
+          font-size: 1.3rem;
+        }
+
+        @include respond-to(sm) {
+          font-size: 1.2rem;
+          margin: 1.5rem 0 0.8rem;
+        }
+      }
+
+      ul, ol {
+        margin: 1.5rem 0;
+        padding-left: 2rem;
+
+        @include respond-to(sm) {
+          margin: 1rem 0;
+          padding-left: 1.5rem;
+        }
+
+        li {
+          margin-bottom: 0.8rem;
+
+          @include respond-to(sm) {
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+
+      blockquote {
+        margin: 2rem 0;
+        padding: 1.5rem 2rem;
+        border-left: 4px solid $accent-color;
+        background: $throw-white;
+
+        @include respond-to(sm) {
+          margin: 1.5rem 0;
+          padding: 1rem 1.5rem;
+        }
+      }
+    }
+
+    &__back-link {
+      margin-top: 3rem;
+      
+      @include respond-to(md) {
+        margin-top: 2rem;
+      }
+
+      a {
+        color: $accent-color;
+        text-decoration: none;
+        font-size: 1rem;
+        display: inline-flex;
+        align-items: center;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+
+        @include respond-to(sm) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    &__share {
+      margin: 3rem 0;
+      text-align: center;
+
+      @include respond-to(md) {
+        margin: 2rem 0;
+      }
+
+      &-title {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        color: $primary-color;
+
+        @include respond-to(sm) {
+          font-size: 1.1rem;
+        }
+      }
+
+      &-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+
+        @include respond-to(sm) {
+          gap: 0.8rem;
+        }
+      }
+    }
+  }
+
+  .share-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    font-size: 1.2rem;
+
+    @include respond-to(sm) {
+      width: 36px;
+      height: 36px;
+      font-size: 1rem;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &.twitter {
+      background-color: #333;
+    }
+
+    &.facebook {
+      background-color: #4267B2;
+    }
+
+    &.line {
+      background-color: #00B900;
+    }
+
+    &.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    }
+
+    &.mail {
+      background-color: #EA4335;
+    }
+  }
+  

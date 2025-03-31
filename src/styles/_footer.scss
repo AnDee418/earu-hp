@@ -1,0 +1,299 @@
+@import '../styles/_variables.scss';  // variables.scssをインポート
+@import '../styles/_button.scss';
+
+footer{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    position: relative;
+    z-index: 1100;
+    .footer-wrapper{
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        @include respond-to(lg){
+            width: 100%;
+        }
+        .footer-top{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .footer-box{
+                padding: 120px 0;
+                width: 100%;
+                background-color: rgba($color: $pickup-color, $alpha: 1.0);
+                transition: all 0.5s ease;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: relative;
+                @include respond-to(lg){
+
+                }
+                .footer-box-text{
+                    width: 75%;
+                    max-width: 800px;
+                    margin: 0 auto;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 24px;
+                    h1{
+                        font-size: 5rem;
+                        font-weight: 900;
+                        color: #f7f7f7;
+                    }
+                    p{
+                        font-size: 1.3rem;
+                        font-weight: 600;
+                        color: #f7f7f7;
+                        text-align: center;
+                    }
+                    .go-contact-fake{
+                        width: fit-content;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 16px 32px;
+                        background-color: $white;
+                        border-radius: 32px;
+                        p{
+                            color: rgba($color: $button-color, $alpha: 1.0);
+                            font-size: 1.2rem;
+                        }
+                        svg{
+                            margin-left: 16px;
+                            font-size: 21px;
+                        }
+                    }
+                    @include respond-to(sm){
+                        h1{
+                            font-size: 3rem;
+                        }
+                        p{
+                            font-size: 1rem;
+                        }
+                    }
+                }
+
+                .contact-image{
+                    position: absolute;
+                    inset: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    opacity: 0.8;
+                    z-index: -1;
+                    transition: all 0.5s ease ;
+                }
+                &:hover{
+                    background-color: rgba($color: $hovered-color, $alpha: 1.0);
+                    @include respond-to(md){
+                        background-color: rgba($color: $pickup-color, $alpha: 1.0);
+                    }
+                }
+            }
+            .footer-box:first-child{
+                border-bottom: 1px solid #f7f7f7;
+            }
+        }
+        .main-footer{
+            width: 100%;
+            padding: 60px;
+            background-color: rgba($color: $button-color, $alpha: 1.0);
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            @include respond-to(xl){
+                flex-direction: column-reverse;
+                padding: 60px 0;
+            }
+            .main-footer-left{
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                width: 35%;
+                justify-content: center;
+                gap: 32px;
+                .tel{
+                    font-size: 1.3rem;
+                    font-weight: 600;
+                    color: $white;
+                    @include respond-to(md){
+                        font-size: 1rem;
+                        font-weight: 400;
+                        margin-bottom: 16px;
+                    }
+                }
+                .main-footer-title{
+                    color: $white;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+                    h1{
+                        font-size: 1.8rem;
+                        font-weight: 900;
+                    }
+                    h3{
+                        font-size: 0.8rem;
+                        font-weight: 600;
+                    }
+                    @include respond-to(sm){
+                        h1{
+                            font-size: 1.2rem;
+                        }
+                        h3{
+                            font-size: 0.8rem;
+                        }
+                    }
+                }
+                iframe{
+                    height: 400px;
+                    max-height: 40dvh;
+                    @include respond-to(md){
+                        display: none;
+                    }
+                }
+                @include respond-to(xl){
+                    width: 95%;
+                    margin: 0 auto;
+                    gap: 8px;
+                }
+            }
+            .main-footer-right{
+                width: 65%;
+                .footer-nav {
+                    width: 100%;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    gap: 24px;
+            
+                    @include respond-to(sm) {
+                        width: 100%;
+                        height: fit-content;
+                    }
+                    .top-link{
+                        font-size: 3.3rem;
+                        font-weight: 600;
+                        display: flex;
+                        flex-direction: column;
+                        @include respond-to(sm) {
+                            font-size: 1.3rem;
+                            padding: 0 24px;
+                        }
+                        span{
+                            font-size: 1rem;
+                            font-weight: 400;
+                            line-height: 100%;
+                        }
+                    }
+            
+                    .contact-link-box{
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        @include respond-to(sm) {
+                            justify-content: flex-start;
+                        }
+                        .go-link{
+                            width: 100%;
+                            font-size: 1.5rem;
+                            background: $white;
+                            color: $accent-color;
+                            padding: 16px 32px;
+                            border-radius: 32px;
+                            line-height: 100%;
+                            transition: all 0.3s ease-in-out;
+                            text-align: center;
+                            @include respond-to(sm){
+                                font-size: 1.3rem;
+                            }
+                            svg{
+                                width: 24px;
+                                height: 24px;
+                                margin-left: 24px;
+                            }
+                            &:hover{
+                                background-color: $hovered-color;
+                                box-shadow: 0px 0px 15px $shadow;
+                                color: $white;
+                            }
+                        }
+                    }
+                    
+                    .side-menu-list {
+                        width: 100%;
+                        list-style-type: none;
+                        display: grid;
+                        margin: 0 auto;
+                        grid-template-columns: repeat(3,1fr);
+                        gap: 40px;
+                        @include respond-to(sm) {
+                            grid-template-columns: repeat(1,1fr);
+                            gap: 24px;
+                        }
+                        .side-menu-list-item {
+                            margin-bottom: 1rem;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 8px;
+                            .page-title{
+                                font-size: 2rem;
+                                font-weight: 600;
+                                display: flex;
+                                flex-direction: column;
+                                border-bottom: 1px solid $white;
+                                padding-bottom: 8px;
+                                margin-bottom: 8px;
+                                @include respond-to(sm) {
+                                    font-size: 1.3rem;
+                                    padding: 0 24px 8px 24px;
+                                }
+                                span{
+                                    font-size: 1rem;
+                                    font-weight: 400;
+                                    @include respond-to(sm) {
+                                        font-size: 0.8rem;
+                                    }
+                                }
+                            }
+                        }
+                    
+                        .side-menu-sublist{
+                            list-style: none;
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 16px;
+                            @include respond-to(md){
+                                padding: 0 24px;
+                            }
+                        }
+                    }
+            
+                    a {
+                        color: #ecf0f1;
+                        text-decoration: none;
+                        transition: color 0.2s ease;
+                        &:hover {
+                            color: $hovered-color;
+                        }
+                    }
+                }
+
+                @include respond-to(xl){
+                    width: 100%;
+                    width: 95%;
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,49 @@
+$primary-color: rgba(51,51,51,1);
+$accent-color: rgba(18,126,210,0.8);
+$white: rgba(255,255,255,1);
+$throw-white: rgba(247,247,247,.8);
+$pickup-color: #14243F;
+$button-color: rgba(51,51,51,1);
+$svg-color: #ffffff;
+$hovered-color: #ce6b0f;
+$curcle-color: #81C7FB;
+$icon-color: #c6e3f9;
+$accent-color2: rgba(68,225,242,1);
+$shadow: rgba(51,51,51,.25);
+$invisible : rgba(51,51,51,0);
+$basic-color: #f7f7f7;
+$red : #f51717;
+
+$faq-theme: rgba(18,126,210,0.4);
+
+
+
+$light-gradation: linear-gradient(to right, #127ED2, #44E1F2);
+$dark-gradation: linear-gradient(to bottom, $pickup-color 60%, $hovered-color);
+$dark-gradation-right: linear-gradient(to right, $pickup-color, $hovered-color);
+
+$basic-size: 16px;
+
+// レスポンシブ
+$breakpoint-xxl: 1400px;  // 大型のデスクトップ
+$breakpoint-xl: 1200px;   // 標準のデスクトップ
+$breakpoint-lg: 992px;    // 小型のデスクトップ、タブレットの横向き
+$breakpoint-md: 768px;    // タブレット
+$breakpoint-sm: 576px;    // スマホ標準サイズ
+$breakpoint-xs: 380px;    // スマホの小さい画面
+
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == xs {
+        @media (max-width: $breakpoint-xs) { @content; }
+    } @else if $breakpoint == sm {
+        @media (max-width: $breakpoint-sm) { @content; }
+    } @else if $breakpoint == md {
+        @media (max-width: $breakpoint-md) { @content; }
+    } @else if $breakpoint == lg {
+        @media (max-width: $breakpoint-lg) { @content; }
+    } @else if $breakpoint == xl {
+        @media (max-width: $breakpoint-xl) { @content; }
+    } @else if $breakpoint == xxl {
+        @media (max-width: $breakpoint-xxl) { @content; }
+    }
+}

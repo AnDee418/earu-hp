@@ -1,0 +1,538 @@
+@import '../styles/variables'; 
+@import '../styles/button'; 
+@import '../styles/animaition'; 
+
+.contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    width: 100%;
+    margin: 0 auto;
+    
+    @include respond-to(sm){
+        width: 95%;
+        align-items: center;
+    }
+
+    .body-wrapper{
+        width: 95%;
+        @include respond-to(sm){
+            width: 100%;
+        }
+    }
+
+    .contact-wrapper{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 60px;
+        margin-top: 60px;
+
+        .contact-titles{
+            padding: 0 10%;
+            @include respond-to(sm){
+                padding: 0;
+            }
+            .sub-section-title{
+                color: $primary-color;
+            }
+            .sub-section-subtitle{
+                background: linear-gradient(to right, #09416C, #127ED2);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                width: fit-content;
+            }
+        }
+
+        .popurer-q{
+            border-top: 1px solid $shadow;
+            border-bottom: 1px solid $shadow;
+            padding: 80px 10%;
+            margin: 60px 0;
+            @include respond-to(sm){
+                padding: 32px 0;
+                margin: 16px 0;
+            }
+
+            h3{
+                font-size: 2.5rem;
+                color: $button-color;
+                margin-bottom: 32px;
+                @include respond-to(sm){
+                    font-size: 1.3rem;
+                }
+            }
+            
+            .faq-link-box{
+                margin-top: 40px;
+                width: 100%;
+                a{
+                    text-decoration: none;
+                    color: $button-color;
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    border: 1px solid $button-color;
+                    background-color: $white;
+                    padding: 12px 24px;
+                    border-radius: 32px;
+                    transition: all 0.3s ease;
+                    svg{
+                        margin-left: 24px;
+                    }
+                }
+                &:hover{
+                    a{
+                        border: 1px solid $button-color;
+                        background-color: $button-color;
+                        color: $white;
+                    }
+                }
+            }
+        }
+
+        .contact-form-container{
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: $white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+
+            .form-title-box{
+                width: 100%;
+                background-color: $button-color;
+                padding: 24px;
+                h1{
+                    color: $white;
+                    font-size: 1.5rem;
+                    font-weight: 500;
+                    margin: 0;
+                    text-align: center;
+                }
+            }
+
+            .contact-form{
+                padding: 32px;
+
+                .repair-notice {
+                    margin-bottom: 24px;
+                    padding: 12px 16px;
+                    background-color: rgba($accent-color, 0.1);
+                    border-radius: 8px;
+                    p {
+                        color: $accent-color;
+                        font-weight: 500;
+                    }
+                }
+                
+                .form-block{
+                    display: flex;
+                    width: 100%;
+                    gap: 24px;
+                    margin-bottom: 24px;
+                    
+                    @include respond-to(sm){
+                        flex-direction: column;
+                        gap: 8px;
+                    }
+
+                    .form-item-title{
+                        width: 30%;
+                        background-color: $button-color;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        color: $white;
+                        height: 60px;
+                        padding: 0 24px;
+                        @include respond-to(sm){
+                            width: 100%;
+                            height: 40px;
+                        }
+                        
+                        span{
+                            background-color: $hovered-color;
+                            font-size: 0.8rem;
+                            padding: 4px 8px;
+                        }
+                    }
+
+                    label{
+                        display: none;
+                    }
+
+                    input,
+                    select,
+                    textarea{
+                        width: 70%;
+                        padding: 12px 16px;
+                        border: 1px solid #e0e0e0;
+                        border-radius: 8px;
+                        font-size: 1rem;
+                        transition: all 0.3s ease;
+                        
+                        &:focus{
+                            outline: none;
+                            border-color: $button-color;
+                            box-shadow: 0 0 0 2px rgba($button-color, 0.1);
+                        }
+                        
+                        &::placeholder{
+                            color: #aaa;
+                        }
+
+                        @include respond-to(sm){
+                            width: 100%;
+                        }
+                    }
+
+                    textarea{
+                        min-height: 120px;
+                        resize: vertical;
+                    }
+
+                    .postal-code-input{
+                        width: 70%;
+                        position: relative;
+                        @include respond-to(sm){
+                            width: 100%;
+                        }
+                        
+                        input{
+                            width: 100%;
+                        }
+                        
+                        .postal-code-notice{
+                            position: absolute;
+                            right: 16px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            font-size: 0.8rem;
+                            color: #666;
+                        }
+                    }
+
+                    &.payment-method {
+                        .fixed-payment {
+                            width: 70%;
+                            background-color: #f8f9fa;
+                            padding: 16px;
+                            border-radius: 8px;
+                            
+                            .payment-text {
+                                font-size: 1.2rem;
+                                font-weight: 500;
+                                color: $primary-color;
+                                margin-bottom: 4px;
+                            }
+                            
+                            .payment-notice {
+                                font-size: 0.9rem;
+                                color: #666;
+                            }
+
+                            @include respond-to(sm){
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    &.notice-text {
+                        display: block;
+                        background-color: #f8f9fa;
+                        padding: 24px;
+                        border-radius: 8px;
+                        width: 100%;
+                        
+                        h3 {
+                            color: $primary-color;
+                            font-size: 1.2rem;
+                            margin-bottom: 16px;
+                            font-weight: 500;
+                        }
+
+                        .warranty-info {
+                            .warranty-status {
+                                font-size: 1.2rem;
+                                font-weight: 600;
+                                color: $button-color;
+                                margin-bottom: 12px;
+                            }
+
+                            .price-info {
+                                p {
+                                    margin-bottom: 8px;
+                                    &.total {
+                                        font-weight: 600;
+                                        margin-top: 12px;
+                                        padding-top: 12px;
+                                        border-top: 1px solid #e0e0e0;
+                                    }
+                                    &.shipping-notice {
+                                        color: #666;
+                                        font-size: 0.9rem;
+                                        margin-top: 12px;
+                                    }
+                                }
+                            }
+                        }
+
+                        .input-notice {
+                            color: #666;
+                            font-style: italic;
+                        }
+
+                        .notice-list {
+                            p {
+                                margin-bottom: 12px;
+                                line-height: 1.6;
+                                color: #444;
+                                
+                                &:last-child {
+                                    margin-bottom: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.fade-enter {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s ease-out;
+}
+
+.fade-exit {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-exit-active {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease-in;
+}
+
+.submit-button {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 40px auto 0;
+    padding: 16px 32px;
+    background-color: $button-color;
+    color: $white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        background-color: darken($button-color, 10%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba($button-color, 0.2);
+    }
+    
+    &:active {
+        transform: translateY(0);
+    }
+    
+    &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact {
+        .contact-wrapper {
+            .contact-form-container {
+                .contact-form {
+                    padding: 20px;
+                    
+                    .form-block {
+                        margin-bottom: 20px;
+                        
+                        input,
+                        select,
+                        textarea {
+                            padding: 10px 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    .submit-button {
+        max-width: 100%;
+    }
+}
+
+/* ContactConsentPage.scss */
+
+.contact-consent {
+    position: relative;
+}
+
+.contact-pre-agree {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    .contact-title{
+        font-size: 2rem;
+        font-weight: 400;
+    }
+
+    .agree-detail{
+        margin: 24px 0 40px 0;
+        font-size: 1.2rem;
+    }
+
+    .privacy-policy{
+        width: 100%;
+        height: 50dvh;
+        background-color: $white;
+        overflow-y: scroll; /* 縦スクロールを常に表示 */
+
+        padding: 40px 32px;
+        h2{
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+        .privacy-policy-text{
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin: 32px 0;
+            line-height: 200%;
+            strong{
+                color: $red;
+            }
+        }
+        ul{
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            li{
+                font-size: 1rem;
+                position: relative;
+                padding-left: 32px;
+                &::before{
+                    content: "";
+                    position: absolute;
+                    width: 16px;
+                    height: 16px;
+                    top: 50%;
+                    left: 0;
+                    transform: translateY(-50%);
+                    border-radius: 50%;
+                    background-color: $button-color;
+                }
+            }
+        }
+    }
+
+    .consent{
+        margin: 60px 0 32px 0;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        &:hover{
+            label{
+                color: $button-color;
+            }
+        }
+        @include respond-to(sm){
+            justify-content: center;
+        }
+        label{
+            margin-left: 16px;
+            color: $primary-color;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        input{
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            @include respond-to(sm){
+                width: 32px;
+                height: 32px;
+            }
+        }
+    }
+
+    .contact-selection{
+        width: 100%;
+        p{
+            font-size: 1.2rem;
+        }
+        select{
+            width: 30%;
+            height: 40px;
+            margin-top: 16px;
+            border: 1px solid $button-color;
+            @include respond-to(sm){
+                width: 100%;
+                height: 60px;
+            }
+        }
+    }
+}
+.contact-button-box{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    @include respond-to(lg){
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.contact-button {
+    width: 400px;
+    padding: 16px 0;
+    margin-top: 40px;
+    border-radius: 32px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    border: none;
+    transition: all 0.2s ease-in-out;
+    @include respond-to(lg){
+        width: 300px;
+    }
+    svg{
+        margin-left: 24px;
+    }
+    &.enabled {
+        background-color: $accent-color;
+        color: $white;
+        cursor: pointer;
+        &:hover{
+            box-shadow: 0px 0px 15px rgba(51,51,51,.25);
+            transform: scale(1.01);
+        }
+    }
+
+    &.disabled {
+        background-color: #ccc;
+        color: $white;
+        cursor: not-allowed;
+    }
+}

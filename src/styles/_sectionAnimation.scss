@@ -1,0 +1,56 @@
+@import '../styles/variables'; 
+
+.overview-link {
+    position: relative;
+    width: 95%;
+    max-width: 1200px;
+    border-radius: 24px;
+    margin: 0 auto 120px auto;
+    height: 80vh; // 適切な高さを指定
+    background-image: url('../assets/images/background/oveview-link.jpg'); // 背景画像を指定
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px); // 通常時のブラー
+    transition: filter 0.3s ease, background-position 0.3s ease; // スムーズなエフェクト切り替え
+    overflow: hidden; // コンテンツがはみ出さないようにする
+    @include respond-to(sm){
+        filter: blur(0); // 通常時のブラー
+    }
+
+    // ホバー時のアニメーション
+    &:hover {
+        filter: blur(0) grayscale(80%); // ホバー時にブラーを解除
+        background-position: right center; // 背景画像のアニメーション
+    }
+
+    a {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: white; // テキストの色
+        z-index: 1; // テキストを背景の上に表示
+    }
+
+    h1 {
+        font-size: 5rem;
+        margin: 0;
+        @include respond-to(sm){
+            font-size: 3rem;
+        }
+    }
+
+    h3 {
+        font-size: 2rem;
+        margin: 10px 0 0 0;
+        @include respond-to(sm){
+            font-size: 1.5rem;
+        }
+    }
+}

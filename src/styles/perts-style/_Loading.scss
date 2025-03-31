@@ -1,0 +1,107 @@
+@import '../variables';
+
+/* ローディングオーバーレイのスタイル */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* 背景を半透明に */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* カラム方向に配置 */
+    z-index: 9999; /* 他の要素より前面に表示 */
+    transition: background-color 0.5s ease; /* フェードアウト用 */
+    
+    &.fade-out {
+        background-color: transparent; /* ロード完了時に背景を透明に */
+    }
+
+    &.slide-out .left-box {
+        transform: translateX(-100%);
+    }
+
+    &.slide-out .right-box {
+        transform: translateX(100%);
+    }
+}
+
+.loading-percentage { /* 新しいスタイルを追加 */
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: $white;
+    font-weight: bold;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+.loading-overlay.fade-out .loader,
+.loading-overlay.fade-out .loading-percentage {
+    opacity: 0;
+}
+
+/* 追加: ローディングボックスのスタイル */
+.loading-box {
+    position: fixed;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-color: $button-color;
+    transition: transform 1s ease-in-out;
+    z-index: 1000;
+
+    &.left-box {
+        left: 0;
+        transform: translateX(0);
+        
+        &.fade-out {
+            transform: translateX(-100%);
+        }
+    }
+
+    &.right-box {
+        right: 0;
+        transform: translateX(0);
+        
+        &.fade-out {
+            transform: translateX(100%);
+        }
+    }
+}
+
+/* アニメーションが開始されたらボックスを左右に移動 */
+.loading-overlay.fade-out .left-box {
+    transform: translateX(-100%);
+}
+
+.loading-overlay.fade-out .right-box {
+    transform: translateX(100%);
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: fit-content;
+    font-size: 40px;
+    line-height: 1.5;
+    font-family: system-ui,sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $button-color;
+    -webkit-text-stroke: 1px $button-color;
+    background:
+        radial-gradient(1.13em at 50% 1.6em,#000 99%,#0000 101%) calc(50% - 1.6em) 0/3.2em 100% text,
+        radial-gradient(1.13em at 50% -0.8em,#0000 99%,#000 101%) 50% .8em/3.2em 100% repeat-x  text;
+    animation: l9 2s linear infinite;
+    transition: opacity 1s ease;
+}
+
+.loader:before {
+    content: "Loading";
+}
+
+@keyframes l9 {
+    to {background-position: calc(50% + 1.6em) 0,calc(50% + 3.2em) .8em}
+}
+

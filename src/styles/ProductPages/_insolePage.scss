@@ -1,0 +1,783 @@
+@import '../variables';
+
+// ページラッパー
+.insole-page-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 120px;
+    .insole-page-container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 120px;
+        @include respond-to(md){
+            margin-top: -20dvh;
+        }
+    }
+}
+
+// セクション
+.insole-page-top{
+    width: 100%;
+    height: 70dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    @include respond-to(xl){
+        height: 80dvh;
+    }
+    @include respond-to(xs){
+        margin-bottom: -30dvh;
+    }
+    h1{
+        font-size: 10rem;
+        position: relative;
+        display: inline-block;
+        text-shadow: 0px 10px 10px rgba(51, 51, 51, 0.25);
+        background: $dark-gradation-right;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: relative;
+        z-index: 1;
+        margin-top: -50dvh;
+        animation: slide-fade-in 0.5s ease-in-out;
+        &::after{
+            content: "INSOLE";
+            position: absolute;
+            top: 60%;
+            left: 0;
+            right: 0;
+            width: 100%;
+            overflow: hidden;
+            color: $button-color;
+            transform: scaleY(-1);
+            opacity: 0;
+            clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,0),rgba(0,0,0,1));
+
+            background: $dark-gradation-right;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            animation: slide-fade-in-shadow 0.3s ease-in-out forwards 0.5s;
+        }
+        @include respond-to(xl){
+            margin-top: -35dvh;
+        }
+        @include respond-to(sm){
+            margin-top: -35dvh;
+            font-size: 5rem;
+        }
+        @include respond-to(xs){
+            margin-top: -55dvh;
+        }
+    }
+    .gradation-box{
+        position: absolute;
+        width: 100%;
+        height: 80%;
+        bottom: 0;
+        left: 0;
+        opacity: 0.5;
+        background: linear-gradient(to top, rgba(0,0,0,0) 90%, rgba(0,0,0,0.3));
+        box-shadow: 0px -5px 25px rgba($color: $button-color, $alpha: 0.25);
+        @include respond-to(xl){
+            height: 70%;
+        }
+        @include respond-to(xs){
+            height: 80%;
+        }
+    }
+}
+
+.insole-section{
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    @include respond-to(lg){
+        height: fit-content;
+        padding: 30px 0;
+    }
+    .insole-page-text{
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        width: 95%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .insole-section-titie{
+            font-size: 3.5rem;
+            font-weight: 600;
+            @include respond-to(xl){
+                font-size: 2.8rem;
+            }
+            @include respond-to(lg){
+                font-size: 2.5rem;
+            }
+            @include respond-to(xs){
+                font-size: 2rem;
+            }
+        }
+        h2{
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: $pickup-color;
+            margin-left: 8px;
+        }
+        .under-text{
+            font-size: 2rem;
+            font-weight: 600;
+            background: $dark-gradation-right;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            width: fit-content;
+            margin: 24px 0 40px 0;
+            @include respond-to(xl){
+                font-size: 1.5rem;
+            }
+            @include respond-to(md){
+                font-size: 1.2rem;
+                margin: 16px 0 40px 0;
+            }
+        }
+        .insole-page-text-detail{
+            font-size: 16px;
+            line-height: 180%;
+        }
+    }
+}
+
+.concept{
+    position: relative;
+    @include respond-to(lg){
+        flex-direction: column-reverse;
+        justify-content: center;
+        gap: 60px;
+    }
+    .insole-page-text{
+        padding-right: 30%;
+        @include respond-to(xl){
+            padding-right: 40%;
+        }
+        @include respond-to(lg){
+            padding-right: 0%;
+        }
+    }
+    .insole-page-backgronud{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40%;
+        height: 100%;
+        .concept-image{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            @include respond-to(lg){
+                display: none;
+            }
+        }
+        @include respond-to(lg){
+            position: relative;
+            width: 100%;
+            height: 50dvh;
+            background-size: cover;
+            mask-image: linear-gradient(to bottom,rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
+            mask-size: cover;
+            mask-repeat: no-repeat;
+            background-image: url('../../assets/images/thumbnail/standing-man.webp');
+        }
+    }
+}
+
+.technology{
+    position: relative;
+    overflow: visible;
+    .insole-page-backgronud{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: fit-content;
+        z-index: -1;
+        @include respond-to(sm){
+            top: 0;
+        }
+        .concept-image{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0.5;
+        }
+    }
+}
+
+.structure{
+    position: relative;
+    .insole-page-text{
+        padding-right: 30%;
+        @include respond-to(sm){
+            padding-right: 0;
+        }
+    }
+    .insole-structure-image{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 45%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        @include respond-to(xl){
+            transform: translateX(15%);
+        }
+        @include respond-to(sm){
+            flex-direction: row;
+            width: 100%;
+            height: 100svh;
+            transform: translateX(0%);
+            top: 5%;
+        }
+        @include respond-to(xs){
+            flex-direction: row;
+            width: 100%;
+            height: 100svh;
+            transform: translateX(-10%);
+            top: 3%;
+        }
+        .cover-image{
+            width: 100%;
+            height: 25%;
+            object-fit: contain;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            pointer-events: none;
+            &.active{
+                transform: scale(1.3);
+                &:nth-child(1){
+                    transform: translateX(0%) translateY(0%) scale(1.3);
+                    @include respond-to(sm){
+                        transform: translateX(-50%) translateY(0%) scale(1.3);
+                    }
+                    @include respond-to(xs){
+                        transform: translateX(-30%) translateY(0%) scale(1.3);
+                    }
+                }
+                &:nth-child(4){
+                    transform: translateX(0%) translateY(0%) scale(1.3);
+                    @include respond-to(sm){
+                        transform: translateX(-50%) translateY(0%) scale(1.3);
+                    }
+                    @include respond-to(xs){
+                        transform: translateX(-30%) translateY(0%) scale(1.3);
+                    }
+                }
+                @include respond-to(sm){
+                    transform: translateX(-50%) scale(1.3);
+                }
+                @include respond-to(xs){
+                    transform: translateX(-30%) scale(1.3);
+                }
+            }
+            &:not(.active){
+                opacity: 0.5;
+                z-index: -1;
+            }
+            &:not(:first-child){
+                margin-top: -10%;
+                @include respond-to(sm){
+                    margin-top: 0;
+                }
+            }
+            @include respond-to(sm){
+                height: 90%;
+                width: 60%;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            @include respond-to(xs){
+                height: 100%;
+                width: 55%;
+                position: absolute;
+                top: 5%;
+                left: 50%;
+                transform: translateX(-30%);
+            }
+        }
+    }
+    @include respond-to(sm){
+        flex-direction: column;
+    }
+}
+
+.top-cover{
+    position: relative;
+    gap: 60px;
+    .top-cover-container{
+        width: 95%;
+        margin: 0 auto;
+        max-width: 1200px;
+        display: flex;
+    }
+    .insole-page-text{
+        position: relative;
+        z-index: 1;
+        width: 60%;
+        h3{
+            margin: 24px 0 ;
+            @include respond-to(sm){
+                margin: 16px 0 40px 0 ;
+            }
+        }
+        @include respond-to(sm){
+            width: 100%;
+        }
+    }
+    .insole-top-cover-image{
+        width: 40%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2%;
+        position: relative;
+        z-index: 1;
+        img{
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+            &.active{
+                opacity: 1;
+            }        
+        }
+        @include respond-to(sm) {
+            display: none;
+        }
+    }
+    .insole-top-cover-background{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 45%;
+        height: 100%;
+        z-index: 0;
+        opacity: 0.3;
+        @include respond-to(sm){
+            width: 60%;
+            height: 60%;
+            top: inherit;
+            bottom: 0;
+        }
+        .top-cover-background{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            img{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                opacity: 0;
+                &.active{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+.navigation-button{
+    width: 10dvw;
+    height: fit-content;
+    position: fixed;
+    bottom:0px;
+    right: 0px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    padding: 16px 24px;
+    border-radius: 16px 0 0 0;
+    background-color: $pickup-color;
+    @include respond-to(sm){
+        display: none;
+    }
+    button{
+        background-color: inherit;
+        border: none;
+        font-size: 16px;
+        color: $button-color;
+        font-family: "Noto Sans JP", sans-serif;
+        color: $white;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        cursor: pointer;
+        &.active {
+            border-bottom: 2px solid $white;
+            font-weight: 600;
+        }
+        &:hover{
+            color: $curcle-color;
+        }
+    }
+}
+
+// ストラクチャータブ
+.tabs-container {
+    .tabs {
+        display: flex;
+        flex-wrap: wrap;
+        @include respond-to(sm){
+            position: relative;
+            z-index: 999;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+        }
+        &.structure-tub{
+            @include respond-to(sm){
+                margin-top: 40svh;
+            }
+        }
+    
+        .tab-button {
+            border: 1px solid $pickup-color;
+            position: relative;
+            padding: 8px 16px;
+            background-color: $curcle-color;
+            border-radius: 0 20px 0 0;
+            box-shadow: 5px 5px 10px rgba($color: $shadow, $alpha: 0.5);
+            cursor: pointer;
+            font-size: 16px;
+            color: $pickup-color;
+            transition: all 0.3s ease-in-out;
+            svg{
+                margin-left: 16px;
+                transform: rotate(90deg);
+            }
+            &:hover {
+                background-color: darken($curcle-color, 30%);
+                color: $white;
+            }
+            &.active {
+                background: $pickup-color;
+                color: #ffffff;
+                svg{
+                    transform: rotate(-90deg);
+                }
+            }
+            &:not(:first-child){
+                margin-left: -8px;
+                @include respond-to(sm){
+                    margin-left: 0;
+                }
+            }
+            &:nth-child(1){
+                z-index: 4;
+                &.active{
+                    z-index: 5;
+                }
+            }
+            &:nth-child(2){
+                z-index: 3;
+                &.active{
+                    z-index: 5;
+                }
+            }
+            &:nth-child(3){
+                z-index: 2;
+                &.active{
+                    z-index: 5;
+                }
+            }
+            &:nth-child(4){
+                z-index: 1;
+                &.active{
+                    z-index: 5;
+                }
+            }
+            &:nth-child(5){
+                z-index: 0;
+                &.active{
+                    z-index: 5;
+                }
+            }
+
+            @include respond-to(sm){
+                position: relative;
+                z-index: 999;
+                background-color: $white;
+                box-shadow: none;
+                border-radius: 0;
+                padding: 16px 0;
+            }
+        }
+    }
+
+    .tab-content {
+        padding: 40px 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: $pickup-color;
+        position: relative;
+        z-index: 6;
+        border-radius: 0 24px 0 0;
+        @include respond-to(sm){
+            justify-content: flex-start;
+            border-radius: 0;
+        }
+        .structure-name,
+        .tab-subtitle,
+        p{
+            color: $white;
+        }
+
+        .structure-name {
+            font-size: 1.8rem;
+            margin: 0;
+            @include respond-to(xs){
+                font-size: 1.5rem;
+            }
+        }
+
+        .tab-subtitle{
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 8px 0 16px 0;
+            border-bottom: 2px solid rgba($color: $white, $alpha: 1);
+            padding-bottom: 16px;
+            @include respond-to(xs){
+                font-size: 1.1rem;
+            }
+        }
+    
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 5px;
+        }
+    
+        .fade-in {
+            opacity: 0;
+            animation: tabFadeIn 0.5s ease-in-out forwards;
+            transform: translateY(0);
+        }
+    }
+}
+
+.top-cover-tab-content{
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 24px;
+    background-color: $basic-color;
+    border: 20px solid $pickup-color;
+    border-radius: 0 24px 0 0;
+    position: relative;
+    z-index: 6;
+    @include respond-to(sm){
+        background-color: inherit;
+        padding: 24px 16px;
+        margin-top: 16px;
+        border: 0px solid $pickup-color;
+        width: 100%;
+    }
+    .tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        @include respond-to(sm){
+            margin-bottom: 20px;
+            position: relative;
+            justify-content: center;
+            z-index: 999;
+        }
+    
+        .tab-button {
+            padding: 8px 16px;
+            border: 1px solid #004080;
+            border-radius: 20px;
+            background: transparent;
+            cursor: pointer;
+            font-size: 16px;
+            color: #004080;
+            transition: background 0.3s, color 0.3s;
+            svg{
+                margin-left: 16px;
+                transform: rotate(90deg);
+            }
+    
+            &.active {
+                background: #004080;
+                color: #ffffff;
+                svg{
+                    transform: rotate(-90deg);
+                }
+            }
+            @include respond-to(sm){
+                position: relative;
+                z-index: 999;
+            }
+        }
+    }
+    .texture{
+        font-size: 3rem;
+        background: $dark-gradation-right;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        width: fit-content;
+        @include respond-to(xl){
+            font-size: 2.3rem;
+        }
+    }
+    .title-detail{
+        font-size: 1.3rem;
+        font-weight: 600;
+        @include respond-to(xl){
+            font-size: 1rem;
+        }
+        @include respond-to(sm){
+            font-size: 1rem;
+            br{
+                display: none;
+            }
+        }
+    }
+    .purpose-list{
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 24px;
+        @include respond-to(sm){
+            gap: 24px;
+        }
+        .purpose-list-item{
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            @include respond-to(sm){
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            &:last-child{
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .label{
+                font-size: 1rem;
+                color: $white;
+                background-color: $pickup-color;
+                padding: 4px 16px;
+                border-radius: 8px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                @include respond-to(xl){
+                    width: 25%;
+                    flex-direction: column;
+                }
+                @include respond-to(sm){
+                    width: fit-content;
+                    flex-direction: column;
+                }
+                
+            }
+            .color-label{
+                display: flex;
+                align-items: center;
+                width: 100%;
+                .arrert{
+                    font-size: 0.7rem;
+                    margin-left: 8px;
+                }
+            }
+            .detail{
+                font-size: 1rem;
+                @include respond-to(xl){
+                    width: 75%;
+                }
+                @include respond-to(sm){
+                    width: 100%;
+                }
+            }
+            .color-list{
+                list-style: none;
+                display: flex;
+                align-items: center;
+                gap: 24px;
+                .color-list-item{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    .color-curcle{
+                        width: 80px;
+                        aspect-ratio: 1/1;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+    }
+    .fade-in {
+        opacity: 0;
+        animation: tabFadeIn 0.5s ease-in-out forwards;
+        transform: translateY(0);
+    }
+}
+
+@keyframes tabFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slide-fade-in{
+    from{
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-fade-in-shadow{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 0.4;
+    }
+}

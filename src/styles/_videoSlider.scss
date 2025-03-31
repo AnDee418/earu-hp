@@ -1,0 +1,43 @@
+.video-slider {
+    width: 80%;
+    margin: auto;
+    padding: 40px 0;
+    perspective: 1000px;
+    .slide {
+        transition: transform 0.5s ease-in-out;
+        transform-style: preserve-3d;
+    }
+        
+    .slick-center .slide {
+        transform: scale(1.1) rotateY(0deg);
+    }
+        
+    .slick-slide {
+        transform: scale(0.8) rotateY(-30deg);
+        opacity: 0.7;
+        transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    }
+        
+    .slick-center {
+        transform: scale(1) rotateY(0deg);
+        opacity: 1;
+    }        
+    .slick-dots{
+        bottom: -30px;
+        li{
+            button{
+                &:before {
+                    font-size: 12px;
+                    color: #000;
+                }
+            }
+        }
+        li.slick-active{
+            button{
+                &:before {
+                    color: #333;
+                }
+            }
+        }
+    } 
+}    

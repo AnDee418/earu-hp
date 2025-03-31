@@ -1,0 +1,171 @@
+@import '../variables';
+
+// ParallaxComponent.scss
+.parallax-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    padding: 0 3%;
+    @include respond-to(sm){
+        flex-direction: column-reverse;
+        width: 95%;
+        height: fit-content;
+        margin: 60px auto 0 auto;
+        padding-left: 0%;
+    }
+    .text-content {
+        width: 50%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+        @include respond-to(sm){
+            width: 100%;
+            gap: 24px;
+        }
+        h1{
+            font-size: 2.5rem;
+            span{
+                position: relative;
+                display: inline-block;
+                opacity: 1;
+                transform: translateX(0);
+                overflow: hidden;
+            }
+            @include respond-to(sm){
+                font-size: 2rem;
+            }
+        }
+        h2{
+            font-size: 2.8rem;
+            word-break: break-word;
+            @include respond-to(xl){
+                font-size: 2.5rem;
+            }
+            @include respond-to(sm){
+                font-size: 2.4rem;
+            }
+            @include respond-to(xs){
+                font-size: 2rem;
+            }
+            .sp-break{
+                display: none;
+                @include respond-to(sm){
+                    display: block;
+                }
+            }
+        }
+        p{
+            font-size: 1.3rem;
+            @include respond-to(sm){
+                font-size: 1rem;
+            }
+        }
+        &.animate{
+            h1{
+                span {
+                    opacity: 0;
+                    color: $primary-color;
+                    animation: fadeIn 0.3s ease-in-out forwards;
+                    animation-delay: calc(var(--i) * 0.1s);
+                }
+            } 
+    
+            @keyframes fadeIn {
+                0% {
+                    opacity: 0;
+                    transform: translateX(-10px);
+                    color: $primary-color;
+                }
+                45%{
+                    opacity: 0.45;
+                    transform: translateX(-5.5px);
+                    color: $primary-color;
+                }
+                50%{
+                    opacity: 0.5;
+                    transform: translateX(-5px);
+                    color: $hovered-color;
+                }
+                65%{
+                    opacity: 0.55;
+                    transform: translateX(-4.5px);
+                    color: $primary-color;
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateX(0px);
+                    color: $primary-color;
+                }
+            }
+    
+        /* 各文字に順番を付けるためのカスタムプロパティを設定 */
+        h1 span:nth-child(1) { --i: 0; }
+        h1 span:nth-child(2) { --i: 1; }
+        h1 span:nth-child(3) { --i: 2; }
+        h1 span:nth-child(4) { --i: 3; }
+        h1 span:nth-child(5) { --i: 4; }
+        h1 span:nth-child(6) { --i: 5; }
+        h1 span:nth-child(7) { --i: 6; }
+        h1 span:nth-child(8) { --i: 7; }
+        }
+    }
+    
+    .image-content {
+        position: relative;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        width: 50%;
+        gap: 10%;
+        @include respond-to(sm){
+            width: 100%;
+            height: 50dvh;
+        }
+        .HomeProductImage{
+            width: 30%;
+            height: 80vh;
+            object-fit: cover;
+            border-radius: 32px;
+            position: absolute;
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+            @include respond-to(sm){
+                height: 40svh;
+            }
+            &:nth-child(1){
+                left: 0;
+                top: 0;
+            }
+            &:nth-child(2){
+                left: 36.5%;
+                top: 40%;
+            }
+            &:nth-child(3){
+                left: 73%;
+                top: 60%;
+            }
+            &.animate{
+                opacity: 1;
+                &:nth-child(1){
+                    top: 0;
+                    transition-delay: 0s;
+                }
+                &:nth-child(2){
+                    top: 20%;
+                    transition-delay: 0.2s;
+                }
+                &:nth-child(3){
+                    top: 10%;
+                    transition-delay: 0.4s;
+                }
+            }
+        }
+    
+    }
+}
+
+

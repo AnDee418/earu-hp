@@ -1,0 +1,507 @@
+@import '../styles/variables';
+
+.background-wrapper{
+    padding: 0 0 16px 0;
+    height: 100vh;
+    .background-container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        // background: linear-gradient(to left, #A9A9A9, #F0F0F0);
+        background-image: url("../assets/images/Home/blue_wave.webp");
+        background-size: cover;
+        background-position: bottom;
+        border-radius: 0 0 32px 0;
+        box-shadow: inset 0 5px 15px rgba(51,51,51,.5);
+        .backound-slider{
+            width: 100%;
+            position: relative;
+            margin-inline: auto;
+            overflow: hidden;
+            transform: translateX(10%) rotate(-45deg) scale(2.5);
+            .loop {
+                animation: loop 40s linear infinite;
+                width: 100%;
+            }
+            .loop2{
+                position: absolute;
+                top: 0; left: 0;
+                animation: loop 40s -20s linear infinite;
+            }
+            @keyframes loop {
+                0%{
+                  transform: translateX(-100%);
+                }
+                100%{
+                  transform: translateX(100%);
+                }
+            }
+        }
+    }
+}
+
+.loopText{
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-inline: auto;
+    transform: scale(2);
+    .looptexts {
+        animation: looptext 40s linear infinite;
+        width: 200%;
+        font-size: 20vw;
+        line-height: 100%;
+        height: 100%;
+    }
+    .looptext2{
+        position: absolute;
+        top: 0; left: 0;
+        animation: looptext 40s 20s linear infinite;
+        color: aqua;
+    }
+      
+    @keyframes looptext {
+        0%{
+          transform: translateX(100%);
+        }
+        100%{
+          transform: translateX(-100%);
+        }
+    }
+}
+
+// ムービースライダー
+.slider-container {
+    position: relative;
+    height: fit-content;
+    width: 100%;
+    overflow: hidden;
+    perspective: 1000px;
+    padding-left: 7%;
+    .slider {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 20px;
+        height: 100%;
+        gap: 60px;
+        @include respond-to(sm){
+            gap: 16px;
+        }
+    
+        .slide {
+            min-width: 120px;
+            max-width: 600px;
+            width: 90%;
+            aspect-ratio: 9/6;
+            object-fit: cover;
+            margin-right: 20px;
+            flex-shrink: 0;
+            transform: translateZ(0);
+            transition: transform 0.3s;
+
+            text-decoration: none;
+            color: rgba($color: $button-color, $alpha: 1);
+
+                &:hover {
+                    transform: scale(1.05);
+                    .slide-inner{
+                        opacity: 0.8;
+                        svg{
+                            color: $hovered-color;
+                        }
+                    }
+                }
+                .slide-inner{
+                    position: relative;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+        
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 10px;
+                    object-fit: cover;
+                }
+        
+                p {
+                    text-align: center;
+                    margin-top: 10px;
+                    font-weight: 600;
+                }
+                svg{
+                    position: absolute;
+                    width: 20%;
+                    aspect-ratio: 1/1;
+                    object-fit: cover;
+                    top: 50%;
+                    left: 50%;
+                    transform: translateX(-50%) translateY(-50%);
+                    font-size: 4rem;
+                    color: gray;
+                }
+        }
+
+        overflow-y: scroll; // 縦方向のスクロールを有効化
+
+        // スクロールバー全体
+        &::-webkit-scrollbar {
+            width: 12px; // スクロールバーの幅
+            height: 6px;
+        }
+
+        // スクロールバーのトラック（背景）
+        &::-webkit-scrollbar-track {
+            background: $basic-color; // 背景色
+            border-radius: 10px; // 角丸
+        }
+
+        // スクロールバーのつまみ
+        &::-webkit-scrollbar-thumb {
+            background: $button-color; // つまみの色
+            border-radius: 10px; // 角丸
+            border: 1px solid #f0f0f0; // スクロールバーとの境界の色
+        }
+
+        // スクロールバーつまみホバー時
+        &::-webkit-scrollbar-thumb:hover {
+            background: rgba($color: $accent-color, $alpha: 1); // ホバー時のつまみの色
+        }
+    }
+}
+
+
+
+
+.embla {
+    overflow: hidden;
+}
+  
+.embla__container {
+    display: flex;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+  
+.embla__slide {
+    flex: 0 0 20%;
+    min-width: 0;
+    padding: 0 10px;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+    cursor: pointer;
+
+    &.active {
+      flex: 0 0 40%;
+    }
+  
+    &:hover .embla__slide__overlay {
+      opacity: 1;
+    }
+}
+  
+.embla__slide__img {
+    display: block;
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+  
+.embla__slide__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 8px;
+  
+    span {
+      color: white;
+      font-size: 16px;
+      text-align: center;
+    }
+}
+  
+.embla__prev,
+.embla__next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: $white;
+    border: 2px solid $accent-color;
+    width: 40px;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 32px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 10;
+  
+    &:hover {
+      background: $accent-color;
+      color: $white;
+    }
+}
+  
+.embla__prev {
+    left: 24px;
+}
+  
+.embla__next {
+    right: 24px;
+}
+  
+.embla__dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+  
+.embla__dot {
+    width: 5vw;
+    height: 2vh;
+    background-color: #efefef;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  
+    &.is-selected {
+      background-color: $primary-color;
+      transform: scaleY(1.5);
+    }
+  
+    &:hover {
+      background-color: #ccc;
+    }
+}
+
+// サブページインジケーター
+.motion-container {
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-in-out 0.5s forwards;
+    max-height: 15dvh;
+
+    .scroll-text {
+        color: white;
+        font-size: 1.5rem; // サイズを大きく
+        margin-bottom: 1rem; // 少し大きな余白
+        text-transform: uppercase;
+        letter-spacing: 0.2em; // 文字間隔を拡げる
+        animation: blink 1.5s ease-in-out infinite; // 点滅アニメーション
+    }
+
+    .scroll-line {
+        width: 3px; // 幅を広げる
+        height: 8rem;
+        background-color: white;
+        transform: scaleY(0);
+        animation: scaleLine 1s ease-in-out infinite alternate, pulse 1.5s infinite ease-in-out; // 脈動アニメーション追加
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes scaleLine {
+    from {
+        transform: scaleY(0);
+    }
+    to {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scaleX(1);
+    }
+    50% {
+        transform: scaleX(2); // 横に脈動するアニメーション
+    }
+}
+
+
+// トップページスクロールインジケーター
+/* ScrollDownIndicator.scss */
+.scroll-down-indicator {
+    position: absolute;
+    bottom: 60px;
+    right: 10dvw;
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+    display: flex;
+    gap: 16px;
+    @include respond-to(sm){
+        left: 8%;
+    }
+    .arrow-container{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        animation: bounce 1.5s infinite;
+        position: relative;
+        z-index: 1;
+        .arrow {
+            position: absolute;
+            top: 45%;
+            left: 45%;
+            transform: translateX(-50%) translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border-bottom: 3px solid $button-color;
+            border-right: 3px solid $button-color;
+        }
+        &::before{
+            content: "";
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: rgba($color: $white, $alpha: 1);
+            border: 1px solid rgba($color: $button-color, $alpha: 0.5);
+            z-index: -1;
+        }
+        &::after{
+            content: "";
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: rgba($color: $button-color, $alpha: 0.5);
+            z-index: -2;
+            animation: beats 1.8s infinite;
+        }
+    }
+    p {
+        margin-top: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        color: $button-color;
+        opacity: 0.8;
+    }
+}
+
+.icon-scroll-down{
+    animation: fadeIn 2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    transition: opacity 0.3s ease-in-out;
+    @include respond-to(sm){
+        left: 8%;
+    }
+    .arrow-container{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        animation: bounce 1.5s infinite;
+        position: relative;
+        z-index: 1;
+        .arrow {
+            position: absolute;
+            top: 45%;
+            left: 45%;
+            transform: translateX(-50%) translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border-bottom: 3px solid $button-color;
+            border-right: 3px solid $button-color;
+        }
+        &::before{
+            content: "";
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: rgba($color: $white, $alpha: 1);
+            border: 1px solid rgba($color: $button-color, $alpha: 0.5);
+            z-index: -1;
+        }
+        &::after{
+            content: "";
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: rgba($color: $button-color, $alpha: 0.5);
+            z-index: -2;
+            animation: beats 1.8s infinite;
+        }
+    }
+    &.scrolledChange{
+        opacity: 0;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0) rotate(45deg);
+    }
+    50% {
+        transform: translateY(10px) rotate(45deg);
+    }
+}
+
+@keyframes beats {
+    0%, 100% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+

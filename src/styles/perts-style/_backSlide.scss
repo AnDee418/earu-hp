@@ -1,0 +1,131 @@
+@import '../variables';
+
+.flowing-images-wrapper {
+    width: 150%;
+    height: 100dvh;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    transition: all 1s ease-in-out;
+    @include respond-to(sm){
+        width: 400%;
+        left: -50%;
+        top: -10%;
+    }
+    .flowing-images {
+        display: flex;
+        gap: 16px;
+        animation: flowLeft 120s linear infinite;
+        transition: all 0.3s ease-in-out;
+        .flowing-image {
+            flex-shrink: 0;
+            width: 25%; /* 4枚表示するため */
+            img {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 9/6;
+                object-fit: cover;
+            }
+        }
+        &.right{
+            animation: flowright 120s linear infinite;
+        }
+    }
+}
+
+.flowing-images-wrapper.scrolledChange{
+    transform: translateZ(-1000px) rotate3d(1, 0, 0, 30deg) rotate3d(0, 1, 0, -30deg);
+    top: -10%;
+    .flowing-images {
+        animation-play-state: paused;
+    }
+}
+
+@keyframes flowLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-200%);
+    }
+}
+
+@keyframes flowright {
+    0% {
+        transform: translateX(-200%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+
+// homeトップバックグランド
+.image-split-screen {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    
+    @include respond-to(md){
+        width: 100%;
+    }
+
+    .screen-clip{
+        width: 100%;
+        height: 100%;
+        display: flex;
+
+        @include respond-to(sm){
+            flex-direction: column;
+        }
+    }
+
+    .image-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        
+        @include respond-to(md){
+            height: 100%;
+            width: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 1s ease-in-out;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            animation: zoomEffect 30s ease-in-out infinite;
+        }
+        
+        img.active {
+            opacity: 1;
+            z-index: 1;
+        }
+    }
+}
+
+@keyframes zoomEffect {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

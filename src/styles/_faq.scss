@@ -1,0 +1,57 @@
+@import '../styles/variables';
+
+.faq-wrapper{
+    padding: 0 10%;
+    max-width: 1200px;
+    margin: 0 auto;
+    @include respond-to(sm){
+        padding: 0 5%;
+    }
+    .faq-section-title{
+        font-size: clamp(28px, 3vw, 48px);
+        font-weight: 900;
+        color: $button-color;
+        margin-bottom: 0.5em;
+    }
+    .faq-section-subtitle{
+        font-size: clamp(18px, 1.3vw, 24px);
+        font-weight: 600;
+        color: $primary-color;
+        margin-bottom: 1em;
+    }
+
+    .faq-sections:not(:last-child){
+        border-bottom: 1px solid $accent-color;
+    }
+
+    .faq-contens{
+        margin-top: 2rem;
+    }
+}
+
+.faq-title-wrapper{
+    padding: clamp(120px, 25vh, 280px) 10% clamp(80px, 20vh, 200px);
+    border-bottom: 1px solid $shadow;
+    @include respond-to(sm){
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 80px 5% 60px;
+    }
+    .sub-section-title{
+        color: $primary-color;
+        font-size: clamp(32px, 4vw, 56px);
+        margin-bottom: 0.5em;
+    }
+    .sub-section-subtitle{
+        background: $dark-gradation-right;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        width: fit-content;
+        font-size: clamp(24px, 2vw, 32px);
+        margin-bottom: 1em;
+    }
+    .sub-section-message{
+        font-size: clamp(16px, 1.2vw, 20px);
+        line-height: 1.6;
+        max-width: 800px;
+    }
+}

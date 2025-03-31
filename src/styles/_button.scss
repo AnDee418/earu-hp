@@ -1,0 +1,435 @@
+@import '../styles/variables';  // variables.scssをインポート
+
+// SNSボタン
+.wrapper {
+    display: inline-flex;
+    align-items: center;
+    list-style: none;
+    height: 120px;
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+    gap: 24px;
+    padding-left: 16px;
+    @include respond-to(sm){
+        gap: 24px;
+        padding-left: 0;
+        height: 60px;
+    }
+    .icon {
+        position: relative;
+        background: #fff;
+        border-radius: 50%;
+        height: 60px;
+        aspect-ratio: 1/1;
+        font-size: 21px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        @include respond-to(sm){
+            width: 60px;
+            height: 60px;
+        }
+        a{
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            svg{
+                color: $pickup-color;
+                font-size: 1.5rem;
+                @include respond-to(sm){
+                    font-size: 1.3rem;
+                }
+            }
+        }
+        &:hover{
+            .tooltip {
+                top: -45px;
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+            span,
+            .tooltip{
+                background: $accent-color;
+                color: #fff;
+            }
+            svg{
+                color: #ffffff;
+            }
+        }
+    }
+    .tooltip {
+        position: absolute;
+        top: 0;
+        font-size: 14px;
+        background: #fff;
+        color: #fff;
+        padding: 5px 8px;
+        border-radius: 5px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        &:before {
+            position: absolute;
+            content: "";
+            height: 8px;
+            width: 8px;
+            background: #fff;
+            bottom: -3px;
+            left: 50%;
+            transform: translate(-50%) rotate(45deg);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+    }
+    .facebook{
+        &:hover
+        {
+            background: #1877f2;
+            color: #fff;
+            .tooltip{
+                background: #1877f2;
+                color: #fff;
+                &:before{
+                    background: #1877f2;
+                    color: #fff;
+                }
+            }
+        }
+    }
+    .line{
+        svg{
+            font-size: 1.8rem;
+        }
+        &:hover
+        {
+            background: #60C755;
+            color: #fff;
+            .tooltip{
+                background: #60C755;
+                color: #fff;
+                &:before{
+                    background: #60C755;
+                    color: #fff;
+                }
+            }
+        }
+    }
+    .instagram{
+        &:hover
+        {
+            background: #e4405f;
+            color: #fff;
+            .tooltip{
+                background: #e4405f;
+                color: #fff;
+                &:before{
+                    background: #e4405f;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+// リンクボタン
+.go-button {
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    font-weight: 600;
+    gap: 24px;
+    align-items: center;
+    height: fit-content;
+    @include respond-to(sm){
+        border-bottom: 1px solid $white;
+        width: fit-content;
+        padding-bottom: 8px;
+    }
+
+    p {
+        margin: 0;
+        position: relative;
+        color: $button-color;
+        border-bottom: 1px solid $button-color;
+        &::before {
+            position: absolute;
+            /*   box-sizing: border-box; */
+            width: 0%;
+            inset: 0;
+            color: $hovered-color;
+            overflow: hidden;
+            border-bottom: 1px solid $hovered-color;
+            transition: 0.3s ease-out;
+        }
+    }
+
+    svg {
+        color: $svg-color;
+        transition: 0.2s;
+        position: relative;
+        width: 40px;
+        transition-delay: 0.2s;
+        background-color: #09416C;
+        border-radius: 50%;
+        padding: 8px;
+    }
+
+    &::after {
+        position: absolute;
+        content: "";
+        width: 0;
+        left: 0;
+        bottom: -7px;
+        background: $hovered-color;
+        height: 2px;
+        transition: 0.3s ease-out;
+    }
+    &:hover{
+        ::after {
+            width: 100%;
+        }
+        p{
+            &::before {
+                width: 100%;
+            }
+        }
+        svg {
+            transform: translateX(4px);
+            background-color: $hovered-color;
+        }
+    }
+}
+
+.go-about{
+    p{
+        font-size: 2rem;
+        &::before {
+            content: "ABOUT US";
+        }
+    }
+    @include respond-to(sm){
+        font-size: 1.3rem;
+    }
+}
+
+.go-after{
+    p{
+        font-size: 2rem;
+        &::before {
+            content: "詳しく見る";
+        }
+    }
+    svg {
+        width: 40px;
+    }
+    @include respond-to(sm){
+        p{
+            font-size: 1.4rem;
+            font-weight: 600;
+            border-bottom: 0px solid $white;
+            color: $white;
+        }
+        svg{
+            width: 32px;
+            background-color: $white;
+            color: $primary-color;
+            border: 1px solid $button-color;
+        }
+    }
+}
+
+.go-membership{
+    svg {
+        background-color: $white;
+        color: $button-color;
+    }
+    p{
+        font-size: 2rem;
+        border-bottom: $white;
+        &::before {
+            content: "詳しく見る";
+        }
+    }
+    &:hover{
+        svg {
+            color: $white;
+            background-color: $hovered-color;
+        }
+    }
+}
+
+.go-agent{
+    svg {
+        background-color: $button-color;
+        color: $white;
+    }
+    p{
+        font-size: 2rem;
+        border-bottom: $button-color;
+        &::before {
+            content: "すべての代理店を見る";
+        }
+    }
+    &:hover{
+        svg {
+            color: $white;
+            background-color: $hovered-color;
+        }
+    }
+}
+.go-membership,
+.go-agent{
+    p{
+        color: $button-color;
+        font-size: 2rem;
+        border-bottom: 1px solid $button-color;
+    }
+    svg {
+        width: 60px;
+        padding: 16px;
+    }
+    @include respond-to(sm){
+        p{
+            font-size: 1.3rem;
+            border-bottom: 0px solid $button-color;
+        }
+        svg{
+            width: 40px;
+            padding: 8px;
+        }
+    }
+}
+
+// トップページボタン
+.learn-more {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    vertical-align: middle;
+    text-decoration: none;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+
+    &.learn-more {
+        width: 12rem;
+        height: auto;
+
+        .circle {
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+            position: relative;
+            display: block;
+            margin: 0;
+            width: 3rem;
+            height: 3rem;
+            background: $button-color;
+            border-radius: 1.625rem;
+
+            .icon {
+                transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                background: #fff;
+
+                &.arrow {
+                    left: 0.625rem;
+                    width: 1.125rem;
+                    height: 0.125rem;
+                    background: none;
+
+                    &::before {
+                        position: absolute;
+                        content: "";
+                        top: -0.29rem;
+                        right: 0.0625rem;
+                        width: 0.625rem;
+                        height: 0.625rem;
+                        border-top: 0.125rem solid #fff;
+                        border-right: 0.125rem solid #fff;
+                        transform: rotate(45deg);
+                    }
+                }
+            }
+        }
+
+        .button-text {
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0.75rem 0;
+            margin: 0 0 0 1.85rem;
+            color: $button-color;
+            font-weight: 700;
+            line-height: 1.6;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    }
+
+    &:hover {
+        .circle {
+            width: 100%;
+            .icon {
+                &.arrow {
+                    background: #fff;
+                    transform: translate(1rem, 0);
+                }
+            }
+        }
+        .button-text {
+            color: #fff;
+        }
+    }
+    &.white-button{
+        &.learn-more{
+            .circle{
+                background: $white;
+                .icon{
+                    background: $button-color;
+                    &.arrow{
+                        background: none;
+                        &::before{
+                            border-top: 0.125rem solid $button-color;
+                            border-right: 0.125rem solid $button-color;
+                        }
+                    }
+                }
+            }
+            .button-text{
+                color: $white;
+            }
+        }
+        &:hover {
+            .circle {
+                width: 100%;
+                .icon {
+                    &.arrow {
+                        background: $button-color;
+                        transform: translate(1rem, 0);
+                    }
+                }
+            }
+            .button-text {
+                color: $button-color;
+            }
+        }
+    }
+}
+

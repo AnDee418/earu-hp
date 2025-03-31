@@ -1,0 +1,180 @@
+@import '../variables';
+
+.home-after-service-wrapper{
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5%;
+    gap: 10%;
+    position: relative;
+    z-index: 3;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    @include respond-to(sm){
+        flex-direction: column;
+        gap: 0;
+        width: 95%;
+        margin: 0 auto;
+        height: fit-content;
+        padding: 0px;
+    }
+    .text-side-wrapper{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 42px;
+        will-change: transform;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        @include respond-to(sm){
+            width: 100%;
+            padding: 20px;
+        }
+        .text-side-title{
+            h3,h1{
+                color: $white;
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            h3{
+                font-size: 2.2rem;
+                margin-bottom: 24px;
+                transform: translateZ(0);
+                backface-visibility: hidden;
+                @include respond-to(sm){
+                    font-size: 2rem;
+                }
+                span{
+                    position: relative;
+                    display: inline-block;
+                    transform: translateX(0) translateZ(0);
+                    opacity: 0;
+                    will-change: transform, opacity;
+                    backface-visibility: hidden;
+                    transform-style: preserve-3d;
+                }
+            }
+            h1{
+                font-size: 3rem;
+                @include respond-to(sm){
+                    font-size: 2rem;
+                }
+                @include respond-to(xs){
+                    font-size: 1.8rem;
+                }
+            }
+            /* 各文字に順番を付けるためのカスタムプロパティを設定 */
+            h3 span:nth-child(1) { --i: 0; }
+            h3 span:nth-child(2) { --i: 1; }
+            h3 span:nth-child(3) { --i: 2; }
+            h3 span:nth-child(4) { --i: 3; }
+            h3 span:nth-child(5) { --i: 4; }
+            h3 span:nth-child(6) { --i: 5; }
+            h3 span:nth-child(7) { --i: 6; }
+            h3 span:nth-child(8) { --i: 7; }
+        }
+        p{
+            font-size: 1.3rem;
+            color: $white;
+            @include respond-to(sm){
+                font-size: 1rem;
+            }
+        }
+        &.animate{
+            .text-side-title{
+                h3{
+                    span {
+                        animation: fadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+                        // アニメーション遅延は JavaScript 側で設定
+                    }
+                }
+            }
+        }
+    }
+    .blank-side{
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        will-change: transform;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        @include respond-to(sm){
+            width: 100%;
+            height: 50dvh;
+        }
+        img{
+            width: 30%;
+            height: 100%;
+            border-radius: 24px;
+            object-fit: cover;
+            position: absolute;
+            transform: translateZ(0);
+            opacity: 0;
+            will-change: transform, opacity;
+            backface-visibility: hidden;
+            @include respond-to(sm){
+                height: 40dvh;
+            }
+            &:nth-child(1){
+                top: 10%;
+                left: 0;
+            }
+            &:nth-child(2){
+                top: -10%;
+                left: 33%;
+                @include respond-to(sm){
+                    left: 35%;
+                }
+            }
+            &:nth-child(3){
+                top: 0%;
+                left: 66%;
+                @include respond-to(sm){
+                    left: 70%;
+                }
+            }
+        }
+        &.animate{
+            img{
+                &:nth-child(1){
+                    animation: slide-up 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.2s;
+                }
+                &:nth-child(2){
+                    animation: slide-up 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.3s; 
+                }
+                &:nth-child(3){
+                    animation: slide-up 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.4s;
+                }
+            }
+        }
+    }
+    
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-5px) translateZ(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) translateZ(0);
+    }
+}
+
+@keyframes slide-up {
+    from{
+        opacity: 0;
+        transform: translateY(20%) translateZ(0);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+    }
+}

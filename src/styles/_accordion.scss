@@ -1,0 +1,120 @@
+@import '../styles/variables';  // variables.scssをインポート
+
+.accordion{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.accordion-menu {
+    flex-grow: 1;
+}
+
+.accordion-item {
+    margin: 0;
+    border-bottom: 1px solid $shadow;
+    overflow: hidden;
+    transition: border-color 0.5s ease;
+
+    &.open {
+        border-color: transparent;
+
+        .accordion-content {
+        max-height: 500px; // 任意の高さに調整
+        transition: max-height 0.8s ease;
+        }
+    }
+
+    .accordion-title {
+        padding: 24px 16px;
+        font-size: 20px;
+        font-weight: 400;
+        color: $button-color;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $shadow;
+        transition: background-color 0.5s ease;
+        @include respond-to(sm){
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        &:hover {
+            background-color: $icon-color;
+            box-shadow: 0px 0px 5px $shadow;
+        }
+
+        .accordion-title-text{
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            .q-icon{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                border: 1px solid $button-color;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: $white;
+                @include respond-to(sm){
+                    width: 30px;
+                    height: 30px;
+                }
+                svg{
+                    color: $button-color;
+                }
+            }
+        }
+
+        .accordion-icon {
+            font-size: 24px;
+            transition: transform 0.5s ease;
+
+            &.open {
+                transform: rotate(45deg);
+            }
+        }
+    }
+
+    .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: $button-color;
+        transition: max-height 0.5s ease;
+        border-radius: 0 0 32px 0;
+        
+        .content-inner {
+            padding: 40px;
+            color: #FFFFFF;
+            font-size: 1.1rem;
+            a{
+                text-decoration: none;
+                color: $curcle-color;
+                position: relative;
+                display: inline-block;
+                
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    width: 0;
+                    height: 1px;
+                    background: $curcle-color;
+                    transition: width 0.3s ease;
+                }
+                
+                &:hover {
+                    &::after {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
