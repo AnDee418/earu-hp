@@ -200,10 +200,6 @@ const TopCoverTabs = ({setTopCoverActiveTab}) => {
                                     <p>ブラック</p>
                                 </li>
                                 <li className="color-list-item">
-                                    <div className="color-curcle" style={{ backgroundColor: '#EAB8B1' }}></div>
-                                    <p>ピンク</p>
-                                </li>
-                                <li className="color-list-item">
                                     <div className="color-curcle" style={{ backgroundColor: '#185499' }}></div>
                                     <p>ブルー</p>
                                 </li>
@@ -235,16 +231,12 @@ const TopCoverTabs = ({setTopCoverActiveTab}) => {
 
                             <ul className="color-list">
                                 <li className="color-list-item">
-                                    <div className="color-curcle" style={{ backgroundColor: '#EFDEC0' }}></div>
-                                    <p>ホワイト</p>
+                                    <div className="color-curcle" style={{ backgroundColor: '#393B4A' }}></div>
+                                    <p>ネイビー</p>
                                 </li>
                                 <li className="color-list-item">
                                     <div className="color-curcle" style={{ backgroundColor: '#807768' }}></div>
                                     <p>グレー</p>
-                                </li>
-                                <li className="color-list-item">
-                                    <div className="color-curcle" style={{ backgroundColor: '#393B4A' }}></div>
-                                    <p>ネイビー</p>
                                 </li>
                             </ul>
                         </li>
@@ -319,6 +311,10 @@ const TopCoverTabs = ({setTopCoverActiveTab}) => {
                                 <li className="color-list-item">
                                     <div className="color-curcle" style={{ backgroundColor: '#393E5B' }}></div>
                                     <p>ネイビー</p>
+                                </li>
+                                <li className="color-list-item">
+                                    <div className="color-curcle" style={{ backgroundColor: '#5E7BC5' }}></div>
+                                    <p>ライトブルー</p>
                                 </li>
                             </ul>
                         </li>

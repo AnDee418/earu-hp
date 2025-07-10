@@ -183,22 +183,22 @@ const staffList = [
         email: "k-nagao@earu-first.com",
         region: "関東エリア"
     },
-    {
-        image: Haruki,
-        name: "斉藤　春樹",
-        engName: "SAITOH HARUKI",
-        title: "名古屋支店長",
-        birth: "1991年",
-        from: "北海道札幌市",
-        career: ["2008年：15人制ラグビー高校日本代表",
-            "2012年：15人制ラグビー20歳以下日本代表候補",
-            "2015年：7人制ラグビー日本代表",
-            "2016年：15人制ラグビー関東代表",
-            "2016年：リオデジャネイロオリンピック7人制ラグビー日本代表候補"
-        ],
-        email: "h-saitoh@earu-first.com",
-        region: "関西・中部エリア"
-    },
+    // {
+    //     image: Haruki,
+    //     name: "斉藤　春樹",
+    //     engName: "SAITOH HARUKI",
+    //     title: "名古屋支店長",
+    //     birth: "1991年",
+    //     from: "北海道札幌市",
+    //     career: ["2008年：15人制ラグビー高校日本代表",
+    //         "2012年：15人制ラグビー20歳以下日本代表候補",
+    //         "2015年：7人制ラグビー日本代表",
+    //         "2016年：15人制ラグビー関東代表",
+    //         "2016年：リオデジャネイロオリンピック7人制ラグビー日本代表候補"
+    //     ],
+    //     email: "h-saitoh@earu-first.com",
+    //     region: "関西・中部エリア"
+    // },
     {
         image: Kawai,
         name: "河合　晋吾",
