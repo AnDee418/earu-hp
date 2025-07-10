@@ -17,7 +17,7 @@ import Watanabe from '../assets/images/staff/Watanabe.jpg';
 import Narita from '../assets/images/staff/Narita.jpg';
 import Takahashi from '../assets/images/staff/Takahashi.jpg';
 import Hirayama from '../assets/images/staff/Hirayama.jpg';
-import Haruki from '../assets/images/staff/Haruki.jpg';
+import Shibata from '../assets/images/staff/shibata.webp';
 import Nakata from '../assets/images/staff/Nakata.jpg';
 import Gotoh from '../assets/images/staff/Gotoh.jpg';
 import Hatakeyama from '../assets/images/staff/Hatakeyama.jpg';
@@ -162,7 +162,6 @@ const staffList = [
     {
         image: Hatakeyama,
         name: "畠山　祥喜",
-        newStamp: "NEW",
         engName: "HATAKEYAMA YOSHIKI",
         title: "営業員",
         birth: "1991年",
@@ -174,7 +173,6 @@ const staffList = [
     {
         image: Nagao,
         name: "永尾　翔",
-        newStamp: "NEW",
         engName: "NAGAO KAKERU",
         title: "営業員",
         birth: "2003年",
@@ -220,6 +218,18 @@ const staffList = [
         qualification: "シューフィッター（FHA）",
         career: ["桃山学院大学卒"],
         email: "k-noguchi@earu-first.com",
+        region: "関西・中部エリア"
+    },
+    {
+        image: Shibata,
+        name: "柴田　陽人",
+        newStamp: "NEW",
+        engName: "SHIBATA HARUTO",
+        title: "営業員",
+        // birth: "1991年",
+        // from: "千葉県野田市",
+        career: [""],
+        email: "h-shibata@earu-first.com",
         region: "関西・中部エリア"
     },
 ];
