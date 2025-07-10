@@ -17,7 +17,7 @@ import Watanabe from '../assets/images/staff/Watanabe.jpg';
 import Narita from '../assets/images/staff/Narita.jpg';
 import Takahashi from '../assets/images/staff/Takahashi.jpg';
 import Hirayama from '../assets/images/staff/Hirayama.jpg';
-import Shibata from '../assets/images/staff/shibata.webp';
+import Shibata from '../assets/images/staff/柴田.png';
 import Nakata from '../assets/images/staff/Nakata.jpg';
 import Gotoh from '../assets/images/staff/Gotoh.jpg';
 import Hatakeyama from '../assets/images/staff/Hatakeyama.jpg';
@@ -61,7 +61,6 @@ const staffList = [
         image: Anzai,
         name: "安西　秀和",
         engName: "ANZAI HIDEKAZU",
-        newStamp: "NEW",
         title: "営業員/エンジニア",
         birth: "1998年",
         from: "北海道南富良野町",
