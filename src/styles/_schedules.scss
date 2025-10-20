@@ -13,7 +13,7 @@
 .schedules-container {
   width: 95%;
   max-width: calc(95vw - 5vw);
-  padding: 0 2.5%;
+  padding: 0 2.5% 24px 2.5%;
   @include respond-to(lg){
     width: 100%;
     max-width: 100%;
