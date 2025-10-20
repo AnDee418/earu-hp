@@ -172,7 +172,7 @@ const ContactForm = ({ selectedInquiry }) => {
 購入施設：${formData.purchaseLocation || '（入力なし）'}
 
 ■ 修理料金
-${formData.isWarrantyPeriod ? '無償修理（保証期間内）\n修理費用：0円' : '有償修理（保証期間外）\n修理費用：8,800円（税込）\n返送料：1,100円（税込）\n合計：9,900円（税込）'}
+${formData.isWarrantyPeriod ? '無償修理（保証期間内）\n修理費用：0円' : '有償修理（保証期間外）\n修理費用：8,000円\n税金：800円\n合計：8,800円（税込）'}
 ※弊社への送料は自己負担となります。
 
 ■ お届け先情報

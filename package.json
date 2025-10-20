@@ -53,5 +53,6 @@
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.83.4",
     "sass-loader": "^16.0.4"
-  }
+  },
+  "proxy": "https://earu-sistem.onrender.com"
 }

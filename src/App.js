@@ -22,6 +22,7 @@ import NewsDetail from './pages/News/NewsDetail';
 import Insole from './pages/Products/Insoles';
 import Brand from './pages/Products/Brand';
 import ProductsHome from './pages/Products/ProductsHome';
+import Schedules from './pages/Schedules/Schedules';
 import ScrollToTop from './components/animaition/ScrollTop';
 import Loading from './components/animaition/Loading';
 
@@ -35,6 +36,9 @@ function App() {
       smoothTouch: false, // タッチデバイスでのスムーズスクロールを無効化
       touchMultiplier: 2, // タッチデバイスでのスクロール速度
     });
+
+    // グローバルにLenisインスタンスを保存（モーダルから制御できるように）
+    window.lenis = lenis;
 
     // アニメーションフレームのループ
     function raf(time) {
@@ -52,6 +56,7 @@ function App() {
     // コンポーネントのアンマウント時にLenisを破棄
     return () => {
       lenis.destroy();
+      window.lenis = null;
     };
   }, []);
 
@@ -157,6 +162,7 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/news" element={<NewsList />} />
                 <Route path="/news/:id" element={<NewsDetail />} />
+                <Route path="/schedules" element={<Schedules />} />
               </Routes>
             </AnimatePresence>
           </main>
