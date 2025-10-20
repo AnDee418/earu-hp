@@ -7,6 +7,40 @@
   background-color: $basic-color;
   display: flex;
   justify-content: flex-end;
+
+  // スケジュールページ専用のラッパーとタイトル調整
+  .potal-list-wrapper {
+    width: 95%;
+
+    @include respond-to(sm) {
+      width: 98%;
+    }
+
+    // スケジュールページ専用のタイトルスタイル（長いタイトルのため）
+    .potal-page-title {
+      font-size: 3.5rem !important;
+      line-height: 1.3;
+      margin-top: 1rem;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+
+      @include respond-to(lg) {
+        font-size: 3.2rem !important;
+      }
+
+      @include respond-to(md) {
+        font-size: 2.8rem !important;
+      }
+
+      @include respond-to(sm) {
+        font-size: 2.6rem !important;
+      }
+
+      @include respond-to(xs) {
+        font-size: 2.4rem !important;
+      }
+    }
+  }
 }
 
 // コンテナ
@@ -17,12 +51,11 @@
   @include respond-to(lg){
     width: 100%;
     max-width: 100%;
-    padding: 0 2.5%;
   }
   @include respond-to(sm){
     width: 100%;
     max-width: 100%;
-    padding: 0 2.5%;
+    padding: 0 2.5% 48px 2.5%;
   }
 }
 
@@ -30,34 +63,52 @@
 .filter-bar {
   background: white;
   border-radius: 0 24px 0 0;
-  padding: 20px 24px;
+  padding: 24px;
   margin-bottom: 32px;
   box-shadow: 0px 4px 8px $shadow;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
-  @include respond-to(sm){
-    flex-direction: column;
+  gap: 24px;
+  flex-wrap: wrap;
+
+  @include respond-to(md) {
+    padding: 20px;
     gap: 16px;
   }
 
+  @include respond-to(sm) {
+    padding: 16px;
+    gap: 12px;
+    border-radius: 0 16px 0 0;
+  }
+
   .view-mode-section {
-    flex: 1;
+    flex: 1 1 auto;
+    min-width: 0;
+
+    @include respond-to(sm) {
+      flex: 1 1 100%;
+    }
 
     .view-mode-buttons {
       display: flex;
       gap: 12px;
+
+      @include respond-to(sm) {
+        gap: 8px;
+      }
     }
 
     .view-mode-button {
+      flex: 1;
       padding: 12px 24px;
       background: white;
       border: 2px solid $icon-color;
       border-radius: 24px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -65,32 +116,68 @@
       font-size: 1rem;
       color: $button-color;
       font-family: "Noto Sans JP", sans-serif;
-      @include respond-to(sm){
-        flex: 1;
-        padding: 10px 16px;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+
+      @include respond-to(md) {
+        padding: 10px 20px;
         font-size: 0.95rem;
+      }
+
+      @include respond-to(sm) {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+        gap: 6px;
+        border-radius: 20px;
       }
 
       .mode-icon {
         font-size: 1.1rem;
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+        @include respond-to(sm) {
+          font-size: 1rem;
+        }
       }
 
       &:hover {
         border-color: $button-color;
         background: $icon-color;
-        box-shadow: 0px 2px 5px $shadow;
+        box-shadow: 0px 2px 8px rgba($button-color, 0.15);
+        transform: translateY(-1px);
+
+        .mode-icon {
+          transform: scale(1.1);
+        }
+      }
+
+      &:active {
+        transform: translateY(0);
+        box-shadow: 0px 1px 4px rgba($button-color, 0.1);
       }
 
       &.active {
         background: $button-color;
         color: white;
         border-color: $button-color;
-        box-shadow: 0px 4px 8px $shadow;
+        box-shadow: 0px 4px 12px rgba($button-color, 0.25);
+
+        .mode-icon {
+          transform: scale(1.05);
+        }
+
+        &:hover {
+          background: $hovered-color;
+          border-color: $hovered-color;
+          box-shadow: 0px 6px 16px rgba($button-color, 0.3);
+        }
       }
     }
   }
 
   .search-button {
+    flex: 0 0 auto;
     padding: 12px 28px;
     background: $button-color;
     color: white;
@@ -98,27 +185,51 @@
     border-radius: 24px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     font-size: 1rem;
     font-family: "Noto Sans JP", sans-serif;
     white-space: nowrap;
-    @include respond-to(sm){
-      width: 100%;
-      justify-content: center;
+    box-shadow: 0px 2px 8px rgba($button-color, 0.2);
+
+    @include respond-to(md) {
+      padding: 10px 24px;
+      font-size: 0.95rem;
+    }
+
+    @include respond-to(sm) {
+      flex: 1 1 100%;
+      padding: 12px 20px;
+      font-size: 0.95rem;
+      border-radius: 20px;
     }
 
     i {
       font-size: 1rem;
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+      @include respond-to(sm) {
+        font-size: 0.95rem;
+      }
     }
 
     &:hover {
       background: $hovered-color;
       border-color: $hovered-color;
-      box-shadow: 0px 4px 12px $shadow;
-      transform: translateY(-1px);
+      box-shadow: 0px 6px 16px rgba($button-color, 0.3);
+      transform: translateY(-2px);
+
+      i {
+        transform: scale(1.1) rotate(5deg);
+      }
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0px 2px 6px rgba($button-color, 0.2);
     }
   }
 }
@@ -831,15 +942,28 @@
     margin-bottom: 48px;
     padding-bottom: 24px;
     border-bottom: 3px solid $button-color;
-    gap: 20px;
+    gap: 24px;
     flex-wrap: wrap;
-    @include respond-to(sm){
-      margin-bottom: 32px;
+
+    @include respond-to(md) {
+      margin-bottom: 36px;
       padding-bottom: 20px;
+      gap: 20px;
+    }
+
+    @include respond-to(sm) {
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      gap: 16px;
     }
 
     .header-content {
-      flex: 1;
+      flex: 1 1 auto;
+      min-width: 0;
+
+      @include respond-to(sm) {
+        flex: 1 1 100%;
+      }
 
       .prefecture-title {
         font-size: 2.6rem;
@@ -849,16 +973,50 @@
         display: flex;
         align-items: center;
         gap: 16px;
-        @include respond-to(sm){
+        line-height: 1.3;
+
+        @include respond-to(lg) {
+          font-size: 2.3rem;
+          gap: 14px;
+        }
+
+        @include respond-to(md) {
           font-size: 2rem;
           gap: 12px;
+          margin: 0 0 10px 0;
+        }
+
+        @include respond-to(sm) {
+          font-size: 1.7rem;
+          gap: 10px;
+          margin: 0 0 8px 0;
+        }
+
+        @include respond-to(xs) {
+          font-size: 1.5rem;
+          gap: 8px;
         }
 
         i {
           color: $button-color;
           font-size: 2.4rem;
-          @include respond-to(sm){
-            font-size: 1.8rem;
+          flex-shrink: 0;
+          transition: transform 0.3s ease;
+
+          @include respond-to(lg) {
+            font-size: 2.1rem;
+          }
+
+          @include respond-to(md) {
+            font-size: 1.9rem;
+          }
+
+          @include respond-to(sm) {
+            font-size: 1.6rem;
+          }
+
+          @include respond-to(xs) {
+            font-size: 1.4rem;
           }
         }
       }
@@ -868,13 +1026,24 @@
         color: rgba($primary-color, 0.7);
         margin: 0;
         font-weight: 500;
-        @include respond-to(sm){
-          font-size: 1rem;
+        line-height: 1.5;
+
+        @include respond-to(md) {
+          font-size: 1.05rem;
+        }
+
+        @include respond-to(sm) {
+          font-size: 0.95rem;
+        }
+
+        @include respond-to(xs) {
+          font-size: 0.9rem;
         }
       }
     }
 
     .close-prefecture-view {
+      flex: 0 0 auto;
       padding: 14px 32px;
       background: $icon-color;
       color: $button-color;
@@ -882,28 +1051,51 @@
       border-radius: 28px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       font-size: 1rem;
       font-family: "Noto Sans JP", sans-serif;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
       white-space: nowrap;
       box-shadow: 0 3px 10px rgba($button-color, 0.2);
-      @include respond-to(sm){
-        width: 100%;
-        justify-content: center;
+
+      @include respond-to(md) {
+        padding: 12px 28px;
+        font-size: 0.95rem;
+      }
+
+      @include respond-to(sm) {
+        flex: 1 1 100%;
+        padding: 12px 24px;
+        font-size: 0.95rem;
+        border-radius: 24px;
       }
 
       i {
         font-size: 1rem;
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+        @include respond-to(sm) {
+          font-size: 0.95rem;
+        }
       }
 
       &:hover {
         background: $button-color;
         color: white;
         transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba($button-color, 0.3);
+        box-shadow: 0 6px 16px rgba($button-color, 0.3);
+
+        i {
+          transform: translateX(-3px);
+        }
+      }
+
+      &:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 6px rgba($button-color, 0.2);
       }
     }
   }

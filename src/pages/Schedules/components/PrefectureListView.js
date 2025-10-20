@@ -2,8 +2,8 @@ import React, { useMemo } from 'react';
 import EventCard from './EventCard';
 
 /**
- * 都道府県別測定会リストビュー
- * 選択された都道府県の今月・来月・再来月の測定会を表示
+ * 都道府県別測定会・アウトソーシングリストビュー
+ * 選択された都道府県の今月・来月・再来月の測定会・アウトソーシングを表示
  */
 const PrefectureListView = ({ prefecture, schedules, onClearSelection }) => {
   // 今月・来月・再来月のイベントを分類
@@ -84,7 +84,7 @@ const PrefectureListView = ({ prefecture, schedules, onClearSelection }) => {
             <div className="empty-icon-wrapper">
               <i className="far fa-calendar-times"></i>
             </div>
-            <p>この月には測定会が予定されていません</p>
+            <p>この月には予定がありません</p>
           </div>
         )}
       </div>
@@ -100,10 +100,10 @@ const PrefectureListView = ({ prefecture, schedules, onClearSelection }) => {
         <div className="header-content">
           <h2 className="prefecture-title">
             <i className="fas fa-map-marker-alt"></i>
-            {prefecture}の測定会
+            {prefecture}のスケジュール
           </h2>
           <p className="prefecture-subtitle">
-            今後3ヶ月の測定会スケジュール（合計{totalEvents}件）
+            今後3ヶ月の予定（合計{totalEvents}件）
           </p>
         </div>
         <button className="close-prefecture-view" onClick={onClearSelection}>

@@ -69,10 +69,11 @@ const EventCard = ({ event }) => {
               </span>
             </div>
 
-            {event.user_name && (
+            {/* 担当者名を表示（アウトソーシングの場合はOS先を担当者として表示） */}
+            {(event.user_name || (event.category === 'outsourcing' && event.os_name)) && (
               <div className="event-staff-info">
                 <i className="fas fa-user"></i>
-                <span>{event.user_name}</span>
+                <span>{event.category === 'outsourcing' ? event.os_name : event.user_name}</span>
               </div>
             )}
 
