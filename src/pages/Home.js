@@ -179,7 +179,7 @@ const Home = ({ onImagesLoaded }) => { // Add onImagesLoaded prop
                   <span className='text-back'>共に創る。</span>
                 </h1>
               </div>
-              <ScrollDownIndicator/>
+              {/* Scroll down indicator intentionally not rendered here anymore - moved to bottom controls */}
             </div>
           </div>
           <div className='background-gra-color'>
@@ -356,6 +356,20 @@ const Home = ({ onImagesLoaded }) => { // Add onImagesLoaded prop
           </div>
         </div>
         <FlowingImages imagesLeft={backslideImages} onImagesLoaded={onImagesLoaded} />
+
+        {/* Fixed bottom controls: Scroll guide + schedule link (right) */}
+        <div className="fixed-bottom-controls" aria-hidden="false">
+          <div className="scroll-indicator-near-schedule">
+            <ScrollDownIndicator />
+          </div>
+          <Link to="/schedules" className="fixed-schedule-link" aria-label="Schedules">
+            <div className="fixed-schedule" role="button" aria-hidden="false">
+              <FontAwesomeIcon icon={faCalendarDays} className="fixed-schedule-icon" />
+              <span className="fixed-schedule-text">スケジュール検索</span>
+            </div>
+          </Link>
+        </div>
+
       </div>
     </motion.div>
   );

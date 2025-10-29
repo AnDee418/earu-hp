@@ -86,6 +86,8 @@
                     position: relative;
                     z-index: 1;
                     display: flex;
+        /* removed misplaced fixed-bottom-controls (moved to top-level) */
+
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
@@ -209,6 +211,40 @@
                 display: flex;
             }
         }
+    }
+}
+
+/* Move scroll indicator to bottom-left to avoid overlap with bottom-right floating elements */
+.scroll-indicator-left{
+    position: fixed;
+    left: 24px;
+    bottom: 24px;
+    z-index: 9998; /* behind the fixed schedule button (9999) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; /* let the indicator be decorative; pointer events pass through unless the component needs clicks */
+
+    /* If the ScrollDownIndicator uses interactive elements, enable pointer events on them specifically */
+    & > * { pointer-events: auto; }
+
+    /* The ScrollDownIndicator itself uses absolute positioning (bottom/right) in its own stylesheet.
+       When we move it into this fixed wrapper, reset those absolute offsets so the indicator is
+       positioned relative to this wrapper and stays visible at bottom-left. */
+    & .scroll-down-indicator{
+        position: relative !important;
+        bottom: auto !important;
+        right: auto !important;
+        left: auto !important;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    @include respond-to(sm){
+        left: 16px;
+        bottom: 16px;
     }
 }
 
@@ -1026,5 +1062,158 @@
     }
     100%{
         width: 0%;
+    }
+}
+
+/* Fixed bottom controls: group scroll indicator and schedule button together
+   so the scroll guide appears immediately to the left of the schedule button. */
+.fixed-bottom-controls{
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 9999; /* top-most for these controls */
+    display: flex;
+    align-items: center;
+    gap: 24px; /* increased spacing so the scroll guide sits clearly left of the schedule button */
+
+    @include respond-to(sm){
+        right: 16px;
+        bottom: 16px;
+        gap: 12px; /* keep compact on small screens */
+    }
+
+    /* larger screens — add more breathing room */
+    @media (min-width: $breakpoint-lg) {
+        gap: 32px;
+    }
+
+    /* make the scroll indicator sit nicely next to the schedule object */
+    .scroll-indicator-near-schedule{ display: flex; align-items: center; }
+
+    /* Ensure the indicator's internal absolute offsets don't push it out when nested here */
+    .scroll-indicator-near-schedule .scroll-down-indicator{
+        position: relative !important;
+        bottom: auto !important;
+        right: auto !important;
+        left: auto !important;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* schedule link lives inside this container and is positioned statically */
+    .fixed-schedule-link{
+        position: static;
+        text-decoration: none;
+        cursor: pointer;
+
+        .fixed-schedule{
+            display: flex;
+            flex-direction: row; /* icon left, text right */
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            background: $light-gradation; /* bright gradient to stand out */
+            color: $white;
+            border-radius: 999px; /* pill shape */
+            box-shadow: 0 14px 48px rgba(18,126,210,0.16);
+            transition: transform 0.18s cubic-bezier(.2,.9,.3,1), box-shadow 0.18s cubic-bezier(.2,.9,.3,1), background 0.18s ease, color 0.12s ease;
+            min-height: 56px;
+        }
+
+        .fixed-schedule-icon{ /* svg icon inside the object */
+            font-size: 1.6rem;
+            display: block;
+            line-height: 1;
+            color: $white;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.18);
+        }
+
+        .fixed-schedule-text{
+            font-weight: 800;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            color: $white; /* unified color with icon */
+            margin-right: 4px;
+        }
+
+        /* When screen is small, collapse into icon-only to save space */
+        @include respond-to(sm){
+            .fixed-schedule{
+                gap: 0;
+                padding: 8px;
+                min-width: 48px;
+                min-height: 48px;
+                justify-content: center;
+            }
+            .fixed-schedule-text{ display: none; }
+            .fixed-schedule-icon{ font-size: 1.1rem; }
+        }
+
+        /* Hover/focus interaction: pop the pill up, change color/gradient and increase shadow */
+        &:hover .fixed-schedule,
+        &:focus-within .fixed-schedule{
+            transform: translateY(-6px) scale(1.06);
+            box-shadow: 0 36px 72px rgba(18,126,210,0.28);
+            /* use single solid hover color instead of gradient */
+            background-color: $hovered-color;
+            background-image: none;
+            color: $white;
+        }
+
+        /* Icon and text color tweaks on hover to make it pop */
+        &:hover .fixed-schedule-icon,
+        &:focus-within .fixed-schedule-icon {
+            color: $throw-white;
+            transform: translateY(-2px) scale(1.04);
+            transition: transform 0.12s ease, color 0.12s ease;
+        }
+
+        &:hover .fixed-schedule-text,
+        &:focus-within .fixed-schedule-text{
+            color: $white;
+            transition: color 0.12s ease;
+        }
+
+        /* Accessible focus-visible outline for keyboard users */
+        .fixed-schedule-link:focus-visible & {
+            outline: 3px solid rgba(68,225,242,0.12);
+            outline-offset: 4px;
+        }
+
+        /* removed pulse loop animation per request */
+
+        @include respond-to(sm){
+            .fixed-schedule{ padding: 8px; border-radius: 14px; }
+            .fixed-schedule-icon{ font-size: 1rem; }
+            .fixed-schedule-text{ font-size: 0.75rem; }
+        }
+
+        /* Larger sizes for wider displays (use min-width so larger screens grow) */
+        @media (min-width: $breakpoint-md) {
+            .fixed-schedule{ padding: 12px; border-radius: 20px; }
+            .fixed-schedule-icon{ font-size: 1.6rem; }
+            .fixed-schedule-text{ font-size: 0.95rem; padding: 4px 8px; }
+        }
+
+        @media (min-width: $breakpoint-lg) {
+            .fixed-bottom-controls { right: 32px; bottom: 32px; }
+            .fixed-schedule{ padding: 14px 18px; border-radius: 22px; }
+            .fixed-schedule-icon{ font-size: 2rem; }
+            .fixed-schedule-text{ font-size: 1.05rem; }
+        }
+
+        @media (min-width: $breakpoint-xl) {
+            .fixed-schedule{ padding: 20px 22px; border-radius: 26px; }
+            .fixed-schedule-icon{ font-size: 2.4rem; }
+            .fixed-schedule-text{ font-size: 1.15rem; }
+        }
+
+        @media (min-width: $breakpoint-xxl) {
+            .fixed-schedule{ padding: 26px 28px; border-radius: 30px; }
+            .fixed-schedule-icon{ font-size: 3rem; }
+            .fixed-schedule-text{ font-size: 1.3rem; }
+        }
     }
 }
